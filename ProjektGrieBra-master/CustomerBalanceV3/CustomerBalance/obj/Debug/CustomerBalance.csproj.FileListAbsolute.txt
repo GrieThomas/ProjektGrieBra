@@ -1,0 +1,15 @@
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalance\CustomerBalance\bin\Debug\CustomerBalance.exe.config
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalance\CustomerBalance\obj\Debug\CustomerBalance.csprojResolveAssemblyReference.cache
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalance\CustomerBalance\bin\Debug\CustomerBalance.exe
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalance\CustomerBalance\bin\Debug\CustomerBalance.pdb
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalance\CustomerBalance\obj\Debug\CustomerBalance.exe
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalance\CustomerBalance\obj\Debug\CustomerBalance.pdb
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalanceV3\CustomerBalance\bin\Debug\CustomerBalance.exe.config
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalanceV3\CustomerBalance\obj\Debug\CustomerBalance.exe
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalanceV3\CustomerBalance\obj\Debug\CustomerBalance.pdb
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalanceV3\CustomerBalance\bin\Debug\CustomerBalance.exe
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalanceV3\CustomerBalance\bin\Debug\CustomerBalance.pdb
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Homework\3_TeamProjectBig\CustomerBalanceV3\CustomerBalance\obj\Debug\CustomerBalance.csprojResolveAssemblyReference.cache
+C:\Users\s1710564001\Desktop\ProjektGrieBra-master\CustomerBalanceV3\CustomerBalance\bin\Debug\CustomerBalance.exe.config
+C:\Users\s1710564001\Desktop\ProjektGrieBra-master\CustomerBalanceV3\CustomerBalance\obj\Debug\CustomerBalance.exe
+C:\Users\s1710564001\Desktop\ProjektGrieBra-master\CustomerBalanceV3\CustomerBalance\obj\Debug\CustomerBalance.pdb
