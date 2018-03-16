@@ -14,7 +14,7 @@ namespace CustomerBalance
             
 
             Console.WriteLine("Der Check ergab:" + CheckEmail(email));
-
+            // Serwas I bims 1 testsatz
 
         }
 
