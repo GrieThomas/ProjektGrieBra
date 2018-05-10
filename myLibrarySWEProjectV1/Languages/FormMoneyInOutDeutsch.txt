@@ -1,0 +1,8 @@
+Ein-/Auszahlung
+Email
+Betrag
+Einzahlen
+Auszahlen
+Neues Guthaben
+Bestaetigen
+Abbruch

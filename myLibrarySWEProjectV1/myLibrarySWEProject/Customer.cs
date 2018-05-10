@@ -29,7 +29,7 @@ namespace myLibrarySWEProject
             lastChange = DateTime.Now;
         }
 
-        public Customer(int customerID, string firstName, string lastName, string email,double accountBalance,DateTime lastChange)
+        public Customer(int customerID, string firstName, string lastName, string email, double accountBalance, DateTime lastChange)
         {
             this.customerID = customerID;
             this.firstName = firstName;
@@ -102,7 +102,7 @@ namespace myLibrarySWEProject
         {
             Email = newEmail;
         }
-        
+
 
         public override string ToString()
         {
@@ -159,10 +159,25 @@ namespace myLibrarySWEProject
                 }
             }
             // Test 5: Check for invalid characters
-            if (!Regex.IsMatch(mail, @"^[a-zA-Z0-9.#%&'*+/=?^`{|}!@~$_-]+$"))
+            //if (!Regex.IsMatch(mail, @"^[a-zA-Z0-9.#%&'*+/=?^`{|}!@~$_-]+$"))
+            //{
+            //    return false;
+            //}
+
+            string invalidSigns = "!#$%&'*+-/=?^_`{|}~_";
+
+            for (int j = 0; j < invalidSigns.Length; j++)
             {
-                return false;
+                for (int i = 0; i < mail.Length; i++)
+                {
+                    if (mail[i].Equals(invalidSigns[j]))
+                    {
+                        return false;
+                    }
+
+                }
             }
+
 
             //Test 6: There must not be a.at the start, end or just before/ after the @
             if (mail[0].Equals('.') || mail[mail.Length - 1].Equals('.') || mail[positionOfAt - 1].Equals('.') || mail[positionOfAt + 1].Equals('.'))

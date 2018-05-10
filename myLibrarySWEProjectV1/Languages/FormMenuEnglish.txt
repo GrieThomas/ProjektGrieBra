@@ -1,0 +1,18 @@
+Find 
+Find 
+first name
+last name
+e-mail
+change user data
+change balance
+add user
+show all/refresh
+Customer ID
+First Name
+Last Name
+Email
+Account Balance
+Last Change
+Functions
+Find person by name
+Find person by email

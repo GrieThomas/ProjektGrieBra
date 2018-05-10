@@ -1,0 +1,6 @@
+Person hinzufügen
+Vorname
+Nachname
+Email 
+Bestaetigen
+Abbrechen

@@ -17,6 +17,8 @@ namespace CustomerDataV1
         private CustomerDatabase myDatabase;
         private string path = @"..\..\..\CustomerData.crypt";
         private string passwordPath = @"..\..\..\initFile.crypt";
+        public string language;
+        public string[] languageData = new string[30];
 
         public FormMenu()
         {
@@ -32,7 +34,32 @@ namespace CustomerDataV1
             dataGridView2.Columns.Add("5", "Account balance");
             dataGridView2.Columns.Add("6", "Last change");
 
-            
+
+        }
+
+        private void FormMenu_Load(object sender, EventArgs e)
+        {
+            LoadLanguageData(language);
+
+            btnFindPers.Text = languageData[0];
+            btnFindPersEmail.Text = languageData[1];
+            lblFname.Text = languageData[2];
+            lblLname.Text = languageData[3];
+            lblEmail.Text = languageData[4];
+            btnChangeAttribut.Text = languageData[5];
+            btnMoneyInOut.Text = languageData[6];
+            btnAdPers.Text = languageData[7];
+            btnshowall.Text = languageData[8];
+            dataGridView2.Columns[0].HeaderText = languageData[9];
+            dataGridView2.Columns[1].HeaderText = languageData[10];
+            dataGridView2.Columns[2].HeaderText = languageData[11];
+            dataGridView2.Columns[3].HeaderText = languageData[12];
+            dataGridView2.Columns[4].HeaderText = languageData[13];
+            dataGridView2.Columns[5].HeaderText = languageData[14];
+            gbFunctions.Text = languageData[15];
+            gbFindPersonByName.Text = languageData[16];
+            gbFindPersonByEmail.Text = languageData[17];
+
         }
 
         private void btnFindPers_Click(object sender, EventArgs e)
@@ -42,13 +69,13 @@ namespace CustomerDataV1
             dataGridView2.Rows.Add(
                 customer.CustomerID, customer.FirstName, customer.LastName, customer.Email, customer.AccountBalance, customer.LastChange
             );
-            
+
         }
 
         private void btnAdPers_Click(object sender, EventArgs e)
         {
             FormAddPerson dialog = new FormAddPerson();
-           
+            dialog.language = language;
             dialog.ShowDialog();
 
         }
@@ -59,15 +86,15 @@ namespace CustomerDataV1
             //string header = "Header";
 
             dataGridView2.Rows.Clear();
-            myDatabase=new CustomerDatabase();
+            myDatabase = new CustomerDatabase();
             myDatabase.ReadPassword(passwordPath);
             myDatabase.readStoredData(path);
             foreach (Customer customer in myDatabase.Customers)
             {
-                
+
                 this.dataGridView2.Rows.Add(
-                
-                    customer.CustomerID, customer.FirstName, customer.LastName, customer.Email,customer.AccountBalance,customer.LastChange
+
+                    customer.CustomerID, customer.FirstName, customer.LastName, customer.Email, customer.AccountBalance, customer.LastChange
 
                 );
 
@@ -92,23 +119,45 @@ namespace CustomerDataV1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            myDatabase.changeName(txtboxLname.Text,txtMail.Text);
+            myDatabase.changeName(txtboxLname.Text, txtMail.Text);
             myDatabase.StoreCSVData(path);
         }
 
         private void btnChangeAttribut_Click(object sender, EventArgs e)
         {
             FormChangeAttr dialog = new FormChangeAttr();
-
+            dialog.language = language;
             dialog.ShowDialog();
         }
 
         private void btnMoneyInOut_Click(object sender, EventArgs e)
         {
             FormMoneyInOut dialog = new FormMoneyInOut();
-
+            dialog.language = language;
             dialog.ShowDialog();
         }
-        
+        public void LoadLanguageData(string language)
+        {
+            StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
+            //string text;
+
+            while (!sr.EndOfStream)
+            {
+                //Console.WriteLine(sr.ReadLine());
+
+                //text = sr.ReadLine();
+                //languageData.Add(text);
+
+                for (int i = 0; i < languageData.Length; i++)
+                {
+                    languageData[i] = sr.ReadLine();
+                }
+
+            }
+            sr.Close();
+
+        }
+
+
     }
 }
