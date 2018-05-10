@@ -31,7 +31,7 @@
             this.lblPsw = new System.Windows.Forms.Label();
             this.txtboxPsw = new System.Windows.Forms.TextBox();
             this.btnpsw = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLang = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -61,14 +61,14 @@
             this.btnpsw.UseVisualStyleBackColor = true;
             this.btnpsw.Click += new System.EventHandler(this.btnpsw_Click);
             // 
-            // label1
+            // lblLang
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(149, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "language";
+            this.lblLang.AutoSize = true;
+            this.lblLang.Location = new System.Drawing.Point(149, 77);
+            this.lblLang.Name = "lblLang";
+            this.lblLang.Size = new System.Drawing.Size(51, 13);
+            this.lblLang.TabIndex = 5;
+            this.lblLang.Text = "language";
             // 
             // comboBox1
             // 
@@ -77,6 +77,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // Form1
             // 
@@ -84,7 +85,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 145);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblLang);
             this.Controls.Add(this.btnpsw);
             this.Controls.Add(this.txtboxPsw);
             this.Controls.Add(this.lblPsw);
@@ -101,7 +102,7 @@
         private System.Windows.Forms.Label lblPsw;
         private System.Windows.Forms.TextBox txtboxPsw;
         private System.Windows.Forms.Button btnpsw;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLang;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }

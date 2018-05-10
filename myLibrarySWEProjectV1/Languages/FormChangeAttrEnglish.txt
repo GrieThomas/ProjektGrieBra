@@ -1,0 +1,11 @@
+Change Attributes
+Change Last Name
+Last Name
+Email
+Change
+Change Email
+Email
+New Email
+Change
+Confirm
+Abort

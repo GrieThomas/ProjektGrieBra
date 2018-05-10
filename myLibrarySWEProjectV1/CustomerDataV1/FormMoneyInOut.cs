@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myLibrarySWEProject;
+using System.IO;
 
 namespace CustomerDataV1
 {
@@ -16,6 +17,8 @@ namespace CustomerDataV1
         CustomerDatabase myDatabase1;
         private string path = @"..\..\..\CustomerData.crypt";
         private string passwordPath = @"..\..\..\initFile.crypt";
+        public string language;
+        public string[] languageData = new string[30];
 
         public FormMoneyInOut()
         {
@@ -52,6 +55,42 @@ namespace CustomerDataV1
         private void btnDone_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormMoneyInOut_Load(object sender, EventArgs e)
+        {
+            LoadLanguageData(language);
+
+            this.Text = languageData[0];
+            lblEmail.Text = languageData[1];
+            lblAmount.Text = languageData[2];
+            btnMoneyIn.Text = languageData[3];
+            btnMoneyOut.Text = languageData[4];
+            lblNewBal.Text = languageData[5];
+            btnDone.Text = languageData[6];
+            btnAbort.Text = languageData[7];
+           
+        }
+        public void LoadLanguageData(string language)
+        {
+            StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
+            //string text;
+
+            while (!sr.EndOfStream)
+            {
+                //Console.WriteLine(sr.ReadLine());
+
+                //text = sr.ReadLine();
+                //languageData.Add(text);
+
+                for (int i = 0; i < languageData.Length; i++)
+                {
+                    languageData[i] = sr.ReadLine();
+                }
+
+            }
+            sr.Close();
+
         }
     }
 }

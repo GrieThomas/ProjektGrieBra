@@ -1,0 +1,8 @@
+Money In/Out
+Email
+Amount
+In
+Out
+new balance
+Confirm
+Abort

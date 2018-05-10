@@ -35,6 +35,7 @@
             this.lblLname = new System.Windows.Forms.Label();
             this.lblFname = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
+            this.btnAbort = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtMail
@@ -87,6 +88,7 @@
             // 
             // btnOk
             // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Location = new System.Drawing.Point(130, 204);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
@@ -95,11 +97,24 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // btnAbort
+            // 
+            this.btnAbort.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnAbort.Location = new System.Drawing.Point(34, 204);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(75, 23);
+            this.btnAbort.TabIndex = 20;
+            this.btnAbort.Text = "Abort";
+            this.btnAbort.UseMnemonic = false;
+            this.btnAbort.UseVisualStyleBackColor = true;
+            this.btnAbort.Click += new System.EventHandler(this.btnOk_Click);
+            // 
             // FormAddPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 270);
+            this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.txtboxLname);
@@ -109,6 +124,7 @@
             this.Controls.Add(this.lblFname);
             this.Name = "FormAddPerson";
             this.Text = "FormAddPerson";
+            this.Load += new System.EventHandler(this.FormAddPerson_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,5 +139,6 @@
         private System.Windows.Forms.Label lblLname;
         private System.Windows.Forms.Label lblFname;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnAbort;
     }
 }

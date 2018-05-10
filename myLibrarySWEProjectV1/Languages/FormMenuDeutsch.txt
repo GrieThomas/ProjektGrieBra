@@ -1,0 +1,18 @@
+Suche 
+Suche 
+Vorname
+Nachname
+Email
+Aenderung der Nutzerdaten
+Guthabentransfer
+Neuer Kunde
+Alle anzeigen
+Kunden ID
+Vorname
+Nachname
+Email
+Guthaben
+Letzte Aenderung
+Funktionen
+Finde Person durch Name
+Finde Person durch Email
