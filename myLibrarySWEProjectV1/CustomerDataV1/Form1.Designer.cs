@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblPsw = new System.Windows.Forms.Label();
             this.txtboxPsw = new System.Windows.Forms.TextBox();
             this.btnpsw = new System.Windows.Forms.Button();
             this.lblLang = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.epErrorMsg = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPsw
             // 
             this.lblPsw.AutoSize = true;
-            this.lblPsw.Location = new System.Drawing.Point(149, 27);
+            this.lblPsw.Location = new System.Drawing.Point(49, 114);
             this.lblPsw.Name = "lblPsw";
             this.lblPsw.Size = new System.Drawing.Size(55, 13);
             this.lblPsw.TabIndex = 2;
@@ -46,16 +49,18 @@
             // 
             // txtboxPsw
             // 
-            this.txtboxPsw.Location = new System.Drawing.Point(210, 24);
+            this.txtboxPsw.Location = new System.Drawing.Point(48, 130);
             this.txtboxPsw.Name = "txtboxPsw";
-            this.txtboxPsw.Size = new System.Drawing.Size(100, 20);
+            this.txtboxPsw.Size = new System.Drawing.Size(121, 20);
             this.txtboxPsw.TabIndex = 3;
+            this.txtboxPsw.Text = "Passwort";
+            this.txtboxPsw.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxPsw_Validating);
             // 
             // btnpsw
             // 
-            this.btnpsw.Location = new System.Drawing.Point(38, 22);
+            this.btnpsw.Location = new System.Drawing.Point(48, 179);
             this.btnpsw.Name = "btnpsw";
-            this.btnpsw.Size = new System.Drawing.Size(75, 23);
+            this.btnpsw.Size = new System.Drawing.Size(121, 35);
             this.btnpsw.TabIndex = 4;
             this.btnpsw.Text = "unlock";
             this.btnpsw.UseVisualStyleBackColor = true;
@@ -64,7 +69,7 @@
             // lblLang
             // 
             this.lblLang.AutoSize = true;
-            this.lblLang.Location = new System.Drawing.Point(149, 77);
+            this.lblLang.Location = new System.Drawing.Point(49, 53);
             this.lblLang.Name = "lblLang";
             this.lblLang.Size = new System.Drawing.Size(51, 13);
             this.lblLang.TabIndex = 5;
@@ -72,18 +77,23 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(230, 74);
+            this.comboBox1.Location = new System.Drawing.Point(48, 69);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
+            // epErrorMsg
+            // 
+            this.epErrorMsg.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 145);
+            this.ClientSize = new System.Drawing.Size(222, 265);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblLang);
             this.Controls.Add(this.btnpsw);
@@ -92,6 +102,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,6 +115,7 @@
         private System.Windows.Forms.Button btnpsw;
         private System.Windows.Forms.Label lblLang;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ErrorProvider epErrorMsg;
     }
 }
 

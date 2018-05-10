@@ -55,19 +55,20 @@ namespace CustomerDataV1
 
         private void btnpsw_Click(object sender, EventArgs e)
         {
-            if (txtboxPsw.Text.Equals("1"))
-            {
+           
+                if (txtboxPsw.Text.Equals(myDatabase.Password))
+                {
 
 
-                //switch to Form Menu
-                FormMenu dialog = new FormMenu();
-                dialog.language = comboBox1.SelectedItem.ToString();
-                dialog.ShowDialog();
-  
-                txtboxPsw.Clear();
+                    //switch to Form Menu
+                    FormMenu dialog = new FormMenu();
+                    dialog.language = comboBox1.SelectedItem.ToString();
+                    dialog.ShowDialog();
 
-
-            }
+                    txtboxPsw.Clear();
+                }
+                
+           
         }
 
         public void LoadLanguageData(string language)
@@ -99,5 +100,37 @@ namespace CustomerDataV1
             lblPsw.Text = languageData[1];
             lblLang.Text = languageData[2];
         }
+
+        private void txtboxPsw_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+
+
+                if (txtboxPsw.Text.Equals(myDatabase.Password))
+                {
+
+
+                    //switch to Form Menu
+                    FormMenu dialog = new FormMenu();
+                    dialog.language = comboBox1.SelectedItem.ToString();
+                    dialog.ShowDialog();
+
+                    txtboxPsw.Clear();
+                }
+                else
+                {
+                    throw new ArgumentException("Wrong password");
+                }
+            }
+            catch (Exception ex)
+            {
+                epErrorMsg.SetError(txtboxPsw, ex.Message);
+                e.Cancel = false;
+
+            }
+        }
+
+      
     }
 }

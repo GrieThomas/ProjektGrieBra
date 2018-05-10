@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnAdPers = new System.Windows.Forms.Button();
             this.btnFindPers = new System.Windows.Forms.Button();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -44,8 +45,10 @@
             this.gbFindPersonByName = new System.Windows.Forms.GroupBox();
             this.gbFindPersonByEmail = new System.Windows.Forms.GroupBox();
             this.gbFunctions = new System.Windows.Forms.GroupBox();
+            this.epErrorMsg = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.gbFindPersonByEmail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdPers
@@ -81,6 +84,7 @@
             this.txtboxLname.Name = "txtboxLname";
             this.txtboxLname.Size = new System.Drawing.Size(88, 20);
             this.txtboxLname.TabIndex = 12;
+            this.txtboxLname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxLname_KeyDown);
             // 
             // lblEmail
             // 
@@ -115,6 +119,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(76, 259);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(741, 180);
             this.dataGridView2.TabIndex = 17;
             // 
@@ -163,6 +168,7 @@
             this.txtboxFname.Name = "txtboxFname";
             this.txtboxFname.Size = new System.Drawing.Size(88, 20);
             this.txtboxFname.TabIndex = 13;
+            this.txtboxFname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxFname_KeyDown);
             // 
             // gbFindPersonByName
             // 
@@ -194,6 +200,10 @@
             this.gbFunctions.TabStop = false;
             this.gbFunctions.Text = "Functions";
             // 
+            // epErrorMsg
+            // 
+            this.epErrorMsg.ContainerControl = this;
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,9 +225,11 @@
             this.Name = "FormMenu";
             this.Text = "FormMenu";
             this.Load += new System.EventHandler(this.FormMenu_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormMenu_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.gbFindPersonByEmail.ResumeLayout(false);
             this.gbFindPersonByEmail.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +253,6 @@
         private System.Windows.Forms.GroupBox gbFindPersonByName;
         private System.Windows.Forms.GroupBox gbFindPersonByEmail;
         private System.Windows.Forms.GroupBox gbFunctions;
+        private System.Windows.Forms.ErrorProvider epErrorMsg;
     }
 }
