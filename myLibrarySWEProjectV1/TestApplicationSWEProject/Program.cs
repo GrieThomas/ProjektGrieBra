@@ -12,6 +12,8 @@ namespace TestApplicationSWEProject
     {
         static void Main(string[] args)
         {
+            //Hallo 2
+            
             //Customer c1 = new Customer(1,"Sepp", "Forcher", "s.f@blasmusi.at");
 
             CustomerDatabase testDatabase = new CustomerDatabase();
