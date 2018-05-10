@@ -149,7 +149,7 @@ namespace myLibrarySWEProject
                 {
                     if (this.FindCustomerByID(Convert.ToInt32(data[0])) == null)//Abfrage ob Customer bereits vorhanden
                     {
-                        customers.Add(new Customer(Convert.ToInt32(data[0]), data[1], data[2], data[3]));
+                        customers.Add(new Customer(Convert.ToInt32(data[0]), data[1], data[2], data[3], Convert.ToDouble(data[4]), Convert.ToDateTime(data[5])));
                         count++;
                     }
                 }

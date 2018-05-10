@@ -1,0 +1,11 @@
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\bin\Debug\testFormApp.exe.config
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\bin\Debug\testFormApp.exe
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\bin\Debug\testFormApp.pdb
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\bin\Debug\myLibrarySWEProject.dll
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\bin\Debug\myLibrarySWEProject.pdb
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\obj\Debug\testFormApp.csprojResolveAssemblyReference.cache
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\obj\Debug\testFormApp.Form1.resources
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\obj\Debug\testFormApp.Properties.Resources.resources
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\obj\Debug\testFormApp.csproj.GenerateResource.Cache
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\obj\Debug\testFormApp.exe
+C:\Users\Tom\Desktop\ATMaster\Semester8\SWE2\Branches\ProjektGrieBra-addAllForms\myLibrarySWEProjectV1\testFormApp\obj\Debug\testFormApp.pdb

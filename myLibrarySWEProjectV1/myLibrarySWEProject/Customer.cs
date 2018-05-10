@@ -29,6 +29,16 @@ namespace myLibrarySWEProject
             lastChange = DateTime.Now;
         }
 
+        public Customer(int customerID, string firstName, string lastName, string email,double accountBalance,DateTime lastChange)
+        {
+            this.customerID = customerID;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.accountBalance = accountBalance;
+            this.lastChange = lastChange;
+        }
+
         public int CustomerID
         {
             get { return customerID; }
