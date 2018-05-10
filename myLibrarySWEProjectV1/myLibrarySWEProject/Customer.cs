@@ -172,6 +172,7 @@ namespace myLibrarySWEProject
                 {
                     if (mail[i].Equals(invalidSigns[j]))
                     {
+                        throw new ArgumentException("Invalid Characters used");
                         return false;
                     }
 
@@ -196,6 +197,38 @@ namespace myLibrarySWEProject
             }
 
             return true;
+        }
+
+        public static bool IsNameCorrect(string name)
+        {
+            int test;
+            int count = 0;
+            bool valid = false;
+
+
+            for (int i = 0; i < name.Length; i++)
+            {
+                if (Int32.TryParse(Convert.ToString(name[i]), out test))
+                {
+                    throw new ArgumentException("Name darf keine Zahl enthalten");
+                }
+            }
+            if (!Char.IsUpper(name[0]))
+            {
+                throw new ArgumentException("Name muss mit Großbuchstaben beginnen");
+            }
+            for (int i = 1; i < name.Length; i++)
+            {
+                if (Char.IsLower(name[i]))
+                {
+                    count++;
+                }
+            }
+            if (count < 2)
+            {
+                throw new ArgumentException("Name muss min 2 Kleinbuchstaben enthalten");
+            }
+            return valid;
         }
     }
 }

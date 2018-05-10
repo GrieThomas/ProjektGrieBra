@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,25 +106,34 @@ namespace TestApplicationSWEProject
             //Console.WriteLine("Password:  " + testDatabase.Password);
 
 
-            //////////////////////////////////////////////////////////
-            ///  Testing password change
-            /// /////////////////////////////////////////////////////
-            /// 
-            /// Verschlüsselt mit irgendeinem Passwort
-            /// 
-            /// Kann lesen, holt sich Passwort aus init File
-            /// 
-            /// 
-            testDatabase.ReadPassword(@"..\..\..\initFile.crypt");
+           // //////////////////////////////////////////////////////////
+           // ///  Testing password change
+           // /// /////////////////////////////////////////////////////
+           // /// 
+           // /// Verschlüsselt mit irgendeinem Passwort
+           // /// 
+           // /// Kann lesen, holt sich Passwort aus init File
+           // /// 
+           // /// 
+           // testDatabase.ReadPassword(@"..\..\..\initFile.crypt");
 
-            testDatabase.readStoredData(@"..\..\..\CustomerData.crypt");
-            testDatabase.StoreCSVData(@"..\..\..\CustomerData.crypt");
-            //testDatabase.ReadCSVData(@"..\..\..\CustomerData.crypt");
+           // testDatabase.readStoredData(@"..\..\..\CustomerData.crypt");
+           // testDatabase.StoreCSVData(@"..\..\..\CustomerData.crypt");
+           // //testDatabase.ReadCSVData(@"..\..\..\CustomerData.crypt");
 
-            Console.WriteLine("Password:  " + testDatabase.Password);
+           // Console.WriteLine("Password:  " + testDatabase.Password);
 
-           // Hallo 
-            // Hallo 3
+           //// Hallo 
+           // // Hallo 3
+
+            // //////////////////////////////////////////////////////////
+            // ///  Reading password
+            // /// /////////////////////////////////////////////////////
+            // /// 
+            Console.WriteLine(testDatabase.ReadPassword(@"..\..\..\initFile.crypt"));
+            testDatabase.ChangePassword(@"..\..\..\initFile.crypt", @"..\..\..\CustomerData.crypt", "Passwort");
+            Console.WriteLine(testDatabase.ReadPassword(@"..\..\..\initFile.crypt"));
+            
         }
     }
 }

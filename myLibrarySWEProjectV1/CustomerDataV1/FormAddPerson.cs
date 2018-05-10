@@ -31,6 +31,7 @@ namespace CustomerDataV1
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            //epErrorMessage.Clear();
             myDatabase1.AddCustomer(txtboxFname.Text, txtboxLname.Text, txtMail.Text);
             myDatabase1.StoreCSVData(path);
             this.Close();
@@ -69,5 +70,32 @@ namespace CustomerDataV1
             sr.Close();
 
         }
+
+        private void txtMail_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                Customer.CheckEmail(txtMail.Text);
+                epErrorMessage.Clear();
+            }
+            catch (Exception ex)
+            {
+                epErrorMessage.SetError(txtMail, ex.Message);
+                e.Cancel = false;
+                
+            }
+        }
+
+        private void btnOk_Validated(object sender, EventArgs e)
+        {
+            btnOk.Enabled = true;
+        }
+
+        private void txtMail_Validated(object sender, EventArgs e)
+        {
+            btnOk.Enabled = true;
+        }
+
+        
     }
 }

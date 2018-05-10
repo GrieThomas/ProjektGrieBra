@@ -75,7 +75,8 @@ namespace myLibrarySWEProject
                     return actCustomer;
                 }
             }
-            return null;
+            throw new ArgumentException("Customer Name not found");
+            //return null;
 
         }
 
@@ -88,7 +89,8 @@ namespace myLibrarySWEProject
                     return actCustomer;
                 }
             }
-            return null;
+            throw new ArgumentException("Customer Email not found");
+            //return null;
 
         }
 
@@ -276,11 +278,12 @@ namespace myLibrarySWEProject
             StoreCSVData(dataPath);//Daten mit neuem Passwort erneut ablegen
         }
 
-        public void ReadPassword(string path)
+        public string ReadPassword(string path)
         {
             StreamReader sr = new StreamReader(path);
             password = Decrypt(sr.ReadLine(), encryptinionKey);//Lesen des Passworts aus dem Init File
             sr.Close();
+            return password;
         }
     }
 }

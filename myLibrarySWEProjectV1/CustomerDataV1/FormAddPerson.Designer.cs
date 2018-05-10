@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtboxLname = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@
             this.lblFname = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnAbort = new System.Windows.Forms.Button();
+            this.epErrorMessage = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMessage)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMail
@@ -44,6 +47,8 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(88, 20);
             this.txtMail.TabIndex = 17;
+            this.txtMail.Validating += new System.ComponentModel.CancelEventHandler(this.txtMail_Validating);
+            this.txtMail.Validated += new System.EventHandler(this.txtMail_Validated);
             // 
             // txtboxLname
             // 
@@ -89,31 +94,37 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(130, 204);
+            this.btnOk.Enabled = false;
+            this.btnOk.Location = new System.Drawing.Point(130, 178);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.Size = new System.Drawing.Size(88, 23);
             this.btnOk.TabIndex = 20;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.btnOk.Validated += new System.EventHandler(this.btnOk_Validated);
             // 
             // btnAbort
             // 
             this.btnAbort.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.btnAbort.Location = new System.Drawing.Point(34, 204);
+            this.btnAbort.Location = new System.Drawing.Point(21, 178);
             this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(75, 23);
+            this.btnAbort.Size = new System.Drawing.Size(88, 23);
             this.btnAbort.TabIndex = 20;
             this.btnAbort.Text = "Abort";
             this.btnAbort.UseMnemonic = false;
             this.btnAbort.UseVisualStyleBackColor = true;
             this.btnAbort.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // epErrorMessage
+            // 
+            this.epErrorMessage.ContainerControl = this;
+            // 
             // FormAddPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 270);
+            this.ClientSize = new System.Drawing.Size(256, 228);
             this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtMail);
@@ -125,6 +136,7 @@
             this.Name = "FormAddPerson";
             this.Text = "FormAddPerson";
             this.Load += new System.EventHandler(this.FormAddPerson_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMessage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Label lblFname;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnAbort;
+        private System.Windows.Forms.ErrorProvider epErrorMessage;
     }
 }
