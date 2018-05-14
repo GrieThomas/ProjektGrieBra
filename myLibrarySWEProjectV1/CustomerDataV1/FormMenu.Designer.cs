@@ -84,6 +84,7 @@
             this.txtboxLname.Name = "txtboxLname";
             this.txtboxLname.Size = new System.Drawing.Size(88, 20);
             this.txtboxLname.TabIndex = 12;
+            this.txtboxLname.Enter += new System.EventHandler(this.txtboxLname_Enter);
             this.txtboxLname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxLname_KeyDown);
             // 
             // lblEmail
@@ -168,6 +169,7 @@
             this.txtboxFname.Name = "txtboxFname";
             this.txtboxFname.Size = new System.Drawing.Size(88, 20);
             this.txtboxFname.TabIndex = 13;
+            this.txtboxFname.Enter += new System.EventHandler(this.txtboxFname_Enter);
             this.txtboxFname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxFname_KeyDown);
             // 
             // gbFindPersonByName

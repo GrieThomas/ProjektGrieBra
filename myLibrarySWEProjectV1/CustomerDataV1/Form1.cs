@@ -30,7 +30,7 @@ namespace CustomerDataV1
 
         public Form1()
         {
-
+            
             InitializeComponent();
             myDatabase = new CustomerDatabase();
             myDatabase.ReadPassword(passwordPath);
@@ -56,6 +56,21 @@ namespace CustomerDataV1
         private void btnpsw_Click(object sender, EventArgs e)
         {
            
+                //if (txtboxPsw.Text.Equals(myDatabase.Password))
+                //{
+
+
+                //    //switch to Form Menu
+                //    FormMenu dialog = new FormMenu();
+                //    dialog.language = comboBox1.SelectedItem.ToString();
+                //    dialog.ShowDialog();
+
+                //    txtboxPsw.Clear();
+                //}
+            try
+            {
+
+
                 if (txtboxPsw.Text.Equals(myDatabase.Password))
                 {
 
@@ -67,7 +82,17 @@ namespace CustomerDataV1
 
                     txtboxPsw.Clear();
                 }
-                
+                else
+                {
+                    throw new ArgumentException("Wrong password");
+                }
+            }
+            catch (Exception ex)
+            {
+                epErrorMsg.SetError(txtboxPsw, ex.Message);
+                //e.Cancel = false;
+
+            }
            
         }
 
@@ -101,34 +126,13 @@ namespace CustomerDataV1
             lblLang.Text = languageData[2];
         }
 
-        private void txtboxPsw_Validating(object sender, CancelEventArgs e)
+      
+
+        private void txtboxPsw_Enter(object sender, EventArgs e)
         {
-            try
-            {
-
-
-                if (txtboxPsw.Text.Equals(myDatabase.Password))
-                {
-
-
-                    //switch to Form Menu
-                    FormMenu dialog = new FormMenu();
-                    dialog.language = comboBox1.SelectedItem.ToString();
-                    dialog.ShowDialog();
-
-                    txtboxPsw.Clear();
-                }
-                else
-                {
-                    throw new ArgumentException("Wrong password");
-                }
-            }
-            catch (Exception ex)
-            {
-                epErrorMsg.SetError(txtboxPsw, ex.Message);
-                e.Cancel = false;
-
-            }
+            txtboxPsw.Clear();
+            txtboxPsw.Text = "Passwort"; // Debugging
+            epErrorMsg.Clear();
         }
 
       

@@ -31,11 +31,57 @@ namespace CustomerDataV1
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            bool error = false;
+            epErrorMessage.Clear();
+
+            try
+            {
+                Customer.IsNameCorrect(txtboxFname.Text);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                epErrorMessage.SetError(txtboxFname, ex.Message);
+                //hpEntryErrors.SetHelpString(txtboxFname, ex.Message);
+                //toolTip1.SetToolTip(txtboxFname, ex.Message);
+                //tpErrorMsg.Show(ex.Message,txtboxFname);
+                //tpErrorMsg.SetToolTip(txtboxFname, ex.Message);
+            }
+
+            try
+            {
+                Customer.IsNameCorrect(txtboxLname.Text);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                epErrorMessage.SetError(txtboxLname, ex.Message);
+                //tpErrorMsg.Show(ex.Message, txtboxLname);
+            }
+
+            try
+            {
+                Customer.CheckEmail(txtMail.Text);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                epErrorMessage.SetError(txtMail, ex.Message);
+                //tpErrorMsg.Show(ex.Message, txtMail);
+            }
+
+            if (!error)
+            {
+                myDatabase1.AddCustomer(txtboxFname.Text, txtboxLname.Text, txtMail.Text);
+                myDatabase1.StoreCSVData(path);
+                DialogResult = DialogResult.OK;
+            }
             //epErrorMessage.Clear();
-            myDatabase1.AddCustomer(txtboxFname.Text, txtboxLname.Text, txtMail.Text);
-            myDatabase1.StoreCSVData(path);
-            this.Close();
-            
+
+            //this.Close();
+
+
+
         }
 
         private void FormAddPerson_Load(object sender, EventArgs e)
@@ -73,29 +119,39 @@ namespace CustomerDataV1
 
         private void txtMail_Validating(object sender, CancelEventArgs e)
         {
-            try
-            {
-                Customer.CheckEmail(txtMail.Text);
-                epErrorMessage.Clear();
-            }
-            catch (Exception ex)
-            {
-                epErrorMessage.SetError(txtMail, ex.Message);
-                e.Cancel = false;
-                
-            }
+            //try
+            //{
+            //    Customer.CheckEmail(txtMail.Text);
+            //    epErrorMessage.Clear();
+            //}
+            //catch (Exception ex)
+            //{
+            //    epErrorMessage.SetError(txtMail, ex.Message);
+            //    e.Cancel = false;
+
+            //}
         }
 
         private void btnOk_Validated(object sender, EventArgs e)
         {
-            btnOk.Enabled = true;
+            //btnOk.Enabled = true;
         }
 
         private void txtMail_Validated(object sender, EventArgs e)
         {
-            btnOk.Enabled = true;
+            //btnOk.Enabled = true;
         }
 
-        
+        private void txtboxFname_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtboxFname_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+
     }
 }
