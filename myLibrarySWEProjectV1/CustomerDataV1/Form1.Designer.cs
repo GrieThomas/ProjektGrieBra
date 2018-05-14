@@ -53,8 +53,7 @@
             this.txtboxPsw.Name = "txtboxPsw";
             this.txtboxPsw.Size = new System.Drawing.Size(121, 20);
             this.txtboxPsw.TabIndex = 3;
-            this.txtboxPsw.Text = "Passwort";
-            this.txtboxPsw.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxPsw_Validating);
+            this.txtboxPsw.Enter += new System.EventHandler(this.txtboxPsw_Enter);
             // 
             // btnpsw
             // 

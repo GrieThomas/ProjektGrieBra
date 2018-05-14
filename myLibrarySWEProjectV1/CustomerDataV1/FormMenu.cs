@@ -35,8 +35,8 @@ namespace CustomerDataV1
             dataGridView2.Columns.Add("4", "E-Mail");
             dataGridView2.Columns.Add("5", "Account balance");
             dataGridView2.Columns.Add("6", "Last change");
-           // btnFindPers.Enabled = false;
-            
+            // btnFindPers.Enabled = false;
+
         }
 
         private void FormMenu_Load(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace CustomerDataV1
             gbFindPersonByName.Text = languageData[16];
             gbFindPersonByEmail.Text = languageData[17];
 
-           
+
 
         }
 
@@ -79,10 +79,10 @@ namespace CustomerDataV1
                 Customer customer = myDatabase.FindCustomerByName(txtboxFname.Text, txtboxLname.Text);
                 dataGridView2.Rows.Clear();
                 dataGridView2.Rows.Add(
-                    customer.CustomerID, 
-                    customer.FirstName, 
-                    customer.LastName, 
-                    customer.Email, 
+                    customer.CustomerID,
+                    customer.FirstName,
+                    customer.LastName,
+                    customer.Email,
                     customer.AccountBalance,
                     customer.LastChange);
 
@@ -91,12 +91,12 @@ namespace CustomerDataV1
             {
                 //epErrorMsg.SetError(btnFindPers, ex.Message);
                 //MessageBox.Show(ex.Message);
-                txtboxLname.Clear();
-                txtboxFname.Clear();
+                //txtboxLname.Clear();
+                //txtboxFname.Clear();
 
                 if (FNameInvalid)
                 {
-                    epErrorMsg.SetError(txtboxFname,ex.Message);
+                    epErrorMsg.SetError(txtboxFname, ex.Message);
                 }
                 else if (LNameInvalid)
                 {
@@ -106,13 +106,13 @@ namespace CustomerDataV1
                 {
                     MessageBox.Show(ex.Message);
                 }
-                
+
                 FNameInvalid = false;
                 LNameInvalid = false;
 
                 //epErrorMsg.Clear();
             }
-            
+
         }
 
         private void btnAdPers_Click(object sender, EventArgs e)
@@ -135,11 +135,13 @@ namespace CustomerDataV1
             foreach (Customer customer in myDatabase.Customers)
             {
 
-                this.dataGridView2.Rows.Add(
-
-                    customer.CustomerID, customer.FirstName, customer.LastName, customer.Email, customer.AccountBalance, customer.LastChange
-
-                );
+                   dataGridView2.Rows.Add(
+                    customer.CustomerID,
+                    customer.FirstName,
+                    customer.LastName,
+                    customer.Email,
+                    customer.AccountBalance,
+                    customer.LastChange);
 
             }
 
@@ -156,6 +158,11 @@ namespace CustomerDataV1
             {
                 Customer.CheckEmail(txtMail.Text);
 
+                if (!myDatabase.IsEmailInDatabase(txtMail.Text))
+                {
+                    throw new ArgumentException("Customer Email not found"); 
+                }
+
                 Customer customer = myDatabase.FindCustomerByEmail(txtMail.Text);
                 dataGridView2.Rows.Clear();
                 dataGridView2.Rows.Add(
@@ -171,7 +178,7 @@ namespace CustomerDataV1
                 MessageBox.Show(ex.Message);
                 txtMail.Clear();
             }
-            
+
 
         }
 
@@ -216,12 +223,12 @@ namespace CustomerDataV1
 
         }
 
-     
 
-        
+
+
         private void txtboxFname_KeyDown(object sender, KeyEventArgs e)
         {
-           
+
             //try
             //{
             //    if (Customer.IsNameCorrect(txtboxFname.Text))
@@ -229,24 +236,24 @@ namespace CustomerDataV1
             //        FNameInvalid = true;
             //        epErrorMsg.Clear();
             //    }
-                
+
             //}
             //catch (Exception ex)
             //{
             //    epErrorMsg.SetError(txtboxFname, ex.Message);
 
             //}
-            
+
         }
 
         private void txtboxLname_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             //try
             //{
             //    if (Customer.IsNameCorrect(txtboxLname.Text))
             //    {
-                    
+
             //       LNameInvalid = true;
             //        epErrorMsg.Clear();
             //    }
@@ -256,7 +263,7 @@ namespace CustomerDataV1
             //{
             //    epErrorMsg.SetError(txtboxLname, ex.Message);
             //}
-            
+
         }
 
         private void FormMenu_MouseMove(object sender, MouseEventArgs e)
@@ -265,6 +272,18 @@ namespace CustomerDataV1
             //{
             //    btnFindPers.Enabled = true;
             //}
+        }
+
+        private void txtboxFname_Enter(object sender, EventArgs e)
+        {
+            txtboxFname.Clear();
+            epErrorMsg.Clear();
+        }
+
+        private void txtboxLname_Enter(object sender, EventArgs e)
+        {
+            txtboxLname.Clear();
+            epErrorMsg.Clear();
         }
     }
 }

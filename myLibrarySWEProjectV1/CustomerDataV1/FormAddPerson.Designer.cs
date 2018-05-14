@@ -38,29 +38,31 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnAbort = new System.Windows.Forms.Button();
             this.epErrorMessage = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tpErrorMsg = new System.Windows.Forms.ToolTip(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.epErrorMessage)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(130, 122);
+            this.txtMail.Location = new System.Drawing.Point(36, 105);
             this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(88, 20);
-            this.txtMail.TabIndex = 17;
+            this.txtMail.Size = new System.Drawing.Size(182, 20);
+            this.txtMail.TabIndex = 30;
             this.txtMail.Validating += new System.ComponentModel.CancelEventHandler(this.txtMail_Validating);
             this.txtMail.Validated += new System.EventHandler(this.txtMail_Validated);
             // 
             // txtboxLname
             // 
-            this.txtboxLname.Location = new System.Drawing.Point(130, 78);
+            this.txtboxLname.Location = new System.Drawing.Point(130, 54);
             this.txtboxLname.Name = "txtboxLname";
             this.txtboxLname.Size = new System.Drawing.Size(88, 20);
-            this.txtboxLname.TabIndex = 18;
+            this.txtboxLname.TabIndex = 20;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(57, 125);
+            this.lblEmail.Location = new System.Drawing.Point(36, 89);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(34, 13);
             this.lblEmail.TabIndex = 14;
@@ -68,15 +70,17 @@
             // 
             // txtboxFname
             // 
-            this.txtboxFname.Location = new System.Drawing.Point(130, 36);
+            this.txtboxFname.Location = new System.Drawing.Point(36, 54);
             this.txtboxFname.Name = "txtboxFname";
             this.txtboxFname.Size = new System.Drawing.Size(88, 20);
-            this.txtboxFname.TabIndex = 19;
+            this.txtboxFname.TabIndex = 10;
+            this.txtboxFname.Enter += new System.EventHandler(this.txtboxFname_Enter);
+            this.txtboxFname.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxFname_Validating);
             // 
             // lblLname
             // 
             this.lblLname.AutoSize = true;
-            this.lblLname.Location = new System.Drawing.Point(57, 81);
+            this.lblLname.Location = new System.Drawing.Point(127, 38);
             this.lblLname.Name = "lblLname";
             this.lblLname.Size = new System.Drawing.Size(52, 13);
             this.lblLname.TabIndex = 15;
@@ -85,7 +89,7 @@
             // lblFname
             // 
             this.lblFname.AutoSize = true;
-            this.lblFname.Location = new System.Drawing.Point(57, 39);
+            this.lblFname.Location = new System.Drawing.Point(36, 38);
             this.lblFname.Name = "lblFname";
             this.lblFname.Size = new System.Drawing.Size(52, 13);
             this.lblFname.TabIndex = 16;
@@ -93,12 +97,10 @@
             // 
             // btnOk
             // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Enabled = false;
-            this.btnOk.Location = new System.Drawing.Point(130, 178);
+            this.btnOk.Location = new System.Drawing.Point(130, 159);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(88, 23);
-            this.btnOk.TabIndex = 20;
+            this.btnOk.TabIndex = 50;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -107,10 +109,10 @@
             // btnAbort
             // 
             this.btnAbort.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.btnAbort.Location = new System.Drawing.Point(21, 178);
+            this.btnAbort.Location = new System.Drawing.Point(39, 159);
             this.btnAbort.Name = "btnAbort";
             this.btnAbort.Size = new System.Drawing.Size(88, 23);
-            this.btnAbort.TabIndex = 20;
+            this.btnAbort.TabIndex = 40;
             this.btnAbort.Text = "Abort";
             this.btnAbort.UseMnemonic = false;
             this.btnAbort.UseVisualStyleBackColor = true;
@@ -120,11 +122,20 @@
             // 
             this.epErrorMessage.ContainerControl = this;
             // 
+            // tpErrorMsg
+            // 
+            this.tpErrorMsg.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
             // FormAddPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(256, 228);
+            this.ClientSize = new System.Drawing.Size(256, 200);
             this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtMail);
@@ -153,5 +164,7 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnAbort;
         private System.Windows.Forms.ErrorProvider epErrorMessage;
+        private System.Windows.Forms.ToolTip tpErrorMsg;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }

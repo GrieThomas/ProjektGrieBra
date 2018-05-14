@@ -33,22 +33,31 @@ namespace CustomerDataV1
             myDatabase1.FindCustomerByEmail(txtMail.Text).moneyIn(Convert.ToDouble(txtAmount.Text));
 
             myDatabase1.StoreCSVData(path);
-            
+
             txtNewAccountBalance.Text = myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance.ToString();
             txtAmount.Clear();
-            
 
-            
+
+
         }
 
         private void btnMoneyOut_Click(object sender, EventArgs e)
         {
-            myDatabase1.FindCustomerByEmail(txtMail.Text).moneyOut(Convert.ToDouble(txtAmount.Text));
 
-            txtNewAccountBalance.Text = myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance.ToString();
+            try
+            {
+                myDatabase1.FindCustomerByEmail(txtMail.Text).moneyOut(Convert.ToDouble(txtAmount.Text));
 
-            myDatabase1.StoreCSVData(path);
-            txtAmount.Clear();
+                txtNewAccountBalance.Text = myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance.ToString();
+
+                myDatabase1.StoreCSVData(path);
+                txtAmount.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
 
@@ -69,7 +78,7 @@ namespace CustomerDataV1
             lblNewBal.Text = languageData[5];
             btnDone.Text = languageData[6];
             btnAbort.Text = languageData[7];
-           
+
         }
         public void LoadLanguageData(string language)
         {
@@ -90,6 +99,53 @@ namespace CustomerDataV1
 
             }
             sr.Close();
+
+        }
+
+        private void btnGetBalance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                epErrorMsg.Clear();
+                tbxBalance.Text = myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance.ToString();
+                groupBox2.Enabled = groupBox3.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                epErrorMsg.SetError(txtMail, ex.Message);
+            }
+        }
+
+
+
+        private void txtMail_TextChanged(object sender, EventArgs e)
+        {
+            groupBox2.Enabled = groupBox3.Enabled = false;
+        }
+
+
+        private void txtAmount_KeyUp(object sender, KeyEventArgs e)
+        {
+            double amount;
+            txtAmount.BackColor = DefaultBackColor;
+            epErrorMsg.Clear();
+
+            try
+            {
+                if (!Double.TryParse(txtAmount.Text, out amount))
+                {
+                    throw new ArgumentException("Entry not valid");
+                }
+
+                if (amount > myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance)
+                {
+                    txtAmount.BackColor = Color.Crimson;
+                }
+            }
+            catch (Exception ex)
+            {
+                epErrorMsg.SetError(txtAmount, ex.Message);
+            }
 
         }
     }

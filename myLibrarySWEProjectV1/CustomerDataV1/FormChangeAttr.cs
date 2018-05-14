@@ -30,15 +30,84 @@ namespace CustomerDataV1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            myDatabase1.changeName(txtboxLname.Text, txtMail.Text);
-            myDatabase1.StoreCSVData(path);
-            
+            bool error = false;
+            epErrorMsg.Clear();
+
+            try
+            {
+                Customer.IsNameCorrect(txtboxLname.Text);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                epErrorMsg.SetError(txtboxLname, ex.Message);
+            }
+
+            try
+            {
+                Customer.CheckEmail(txtMail.Text);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                epErrorMsg.SetError(txtMail, ex.Message);
+            }
+
+            if (!error)
+            {  
+                try
+                {
+                    myDatabase1.changeName(txtboxLname.Text, txtMail.Text);
+                    myDatabase1.StoreCSVData(path);
+                    btnChange1.BackColor = Color.Chartreuse;
+                }
+                catch (Exception ex)
+                {
+                    epErrorMsg.SetError(btnChange1, ex.Message);
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            myDatabase1.changeEmail(txtMail.Text, txtNewMail.Text);
-            myDatabase1.StoreCSVData(path);
+
+            bool error = false;
+            epErrorMsg.Clear();
+
+            try
+            {
+                Customer.CheckEmail(txtNewMail.Text);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                epErrorMsg.SetError(txtNewMail, ex.Message);
+            }
+
+            try
+            {
+                Customer.CheckEmail(txtNewMail.Text);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                epErrorMsg.SetError(txtOldMail, ex.Message);             
+            }
+
+            if (!error)
+            {
+                try
+                {
+                    myDatabase1.changeEmail(txtOldMail.Text, txtNewMail.Text);
+                    myDatabase1.StoreCSVData(path);
+                    btnChange2.BackColor = Color.Chartreuse;
+                    
+                }
+                catch (Exception ex)
+                {
+                    epErrorMsg.SetError(btnChange2, ex.Message); 
+                }
+            }
         }
 
         private void btnDone_Click(object sender, EventArgs e)
@@ -87,6 +156,12 @@ namespace CustomerDataV1
             }
             sr.Close();
 
+        }
+
+        private void FormChangeAttr_MouseMove(object sender, MouseEventArgs e)
+        {
+            btnChange1.BackColor = DefaultBackColor;
+            btnChange2.BackColor = DefaultBackColor;
         }
     }
 }

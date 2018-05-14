@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnChange1 = new System.Windows.Forms.Button();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtboxLname = new System.Windows.Forms.TextBox();
@@ -38,10 +39,12 @@
             this.txtNewMail = new System.Windows.Forms.TextBox();
             this.btnDone = new System.Windows.Forms.Button();
             this.lblEmail2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtOldMail = new System.Windows.Forms.TextBox();
             this.gpChLstName = new System.Windows.Forms.GroupBox();
             this.gbChEmail = new System.Windows.Forms.GroupBox();
             this.btnAbort = new System.Windows.Forms.Button();
+            this.epErrorMsg = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).BeginInit();
             this.SuspendLayout();
             // 
             // btnChange1
@@ -132,12 +135,12 @@
             this.lblEmail2.TabIndex = 21;
             this.lblEmail2.Text = "e-mail";
             // 
-            // textBox1
+            // txtOldMail
             // 
-            this.textBox1.Location = new System.Drawing.Point(351, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(88, 20);
-            this.textBox1.TabIndex = 24;
+            this.txtOldMail.Location = new System.Drawing.Point(351, 53);
+            this.txtOldMail.Name = "txtOldMail";
+            this.txtOldMail.Size = new System.Drawing.Size(88, 20);
+            this.txtOldMail.TabIndex = 24;
             // 
             // gpChLstName
             // 
@@ -168,6 +171,10 @@
             this.btnAbort.UseVisualStyleBackColor = true;
             this.btnAbort.Click += new System.EventHandler(this.btnDone_Click);
             // 
+            // epErrorMsg
+            // 
+            this.epErrorMsg.ContainerControl = this;
+            // 
             // FormChangeAttr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,7 +184,7 @@
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnChange2);
             this.Controls.Add(this.txtNewMail);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtOldMail);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.lblNewEmail);
             this.Controls.Add(this.lblEmail2);
@@ -190,6 +197,8 @@
             this.Name = "FormChangeAttr";
             this.Text = "FormChangeAttr";
             this.Load += new System.EventHandler(this.FormChangeAttr_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormChangeAttr_MouseMove);
+            ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,9 +216,10 @@
         private System.Windows.Forms.TextBox txtNewMail;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Label lblEmail2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtOldMail;
         private System.Windows.Forms.GroupBox gpChLstName;
         private System.Windows.Forms.GroupBox gbChEmail;
         private System.Windows.Forms.Button btnAbort;
+        private System.Windows.Forms.ErrorProvider epErrorMsg;
     }
 }

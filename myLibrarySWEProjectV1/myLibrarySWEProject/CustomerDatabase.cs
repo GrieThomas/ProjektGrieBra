@@ -93,6 +93,17 @@ namespace myLibrarySWEProject
             //return null;
 
         }
+        public bool IsEmailInDatabase(string Email)
+        {
+            foreach (Customer actCustomer in customers)
+            {
+                if (actCustomer.Email == Email)
+                {
+                    return true;
+                }
+            } 
+            return false;
+        }
 
         public Customer FindCustomerByID(int customerID)
         {
@@ -116,14 +127,23 @@ namespace myLibrarySWEProject
             FindCustomerByEmail(email).changeLastName(newLastName);
         }
 
-        public bool changeEmail(string email, string newEmail)
+        public void changeEmail(string email, string newEmail)
         {
-            if (FindCustomerByEmail(newEmail) == null && FindCustomerByEmail(email) != null)// neue darf nicht vorhanden sein, alte muss vorhanden sein
+            if (!IsEmailInDatabase(email))
             {
-                FindCustomerByEmail(email).changeEmail(newEmail);
-                return true;
+                throw new ArgumentException("User not found");
             }
-            return false;
+            if (IsEmailInDatabase(newEmail))
+            {
+                throw new ArgumentException("New Email already exists");
+            }
+            //if (FindCustomerByEmail(newEmail) == null && FindCustomerByEmail(email) != null)// neue darf nicht vorhanden sein, alte muss vorhanden sein
+            //{
+            //    FindCustomerByEmail(email).changeEmail(newEmail);
+            //    return true;
+            //}
+                FindCustomerByEmail(email).changeEmail(newEmail);
+            //return false;
         }
 
         public void readStoredData(string path)
