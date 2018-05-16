@@ -44,7 +44,7 @@ namespace TestApplicationSWEProject
             {
                 Console.WriteLine(var.CustomerID + " " + var.FirstName + " " + var.LastName + " " + var.Email);
             }
-            testDatabase.changeEmail("hansi2@edelweiss.at", "hansi1@edelweiss.at");
+           // testDatabase.changeEmail("hansi2@edelweiss.at", "hansi1@edelweiss.at");
 
             foreach (Customer var in testDatabase.Customers)
             {
@@ -133,6 +133,8 @@ namespace TestApplicationSWEProject
             Console.WriteLine(testDatabase.ReadPassword(@"..\..\..\initFile.crypt"));
             testDatabase.ChangePassword(@"..\..\..\initFile.crypt", @"..\..\..\CustomerData.crypt", "Passwort");
             Console.WriteLine(testDatabase.ReadPassword(@"..\..\..\initFile.crypt"));
+
+            Console.WriteLine(System.DateTime.Now.Year+"_"+System.DateTime.Now.Month+"_"+System.DateTime.Now.Day);
             
         }
     }

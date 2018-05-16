@@ -17,6 +17,7 @@ namespace CustomerDataV1
         private CustomerDatabase myDatabase;
         private string path = @"..\..\..\CustomerData.crypt";
         private string passwordPath = @"..\..\..\initFile.crypt";
+        private string backupFolderPath = @"..\..\..\backups\";
         public string language;
         public string[] languageData = new string[30];
         bool FNameInvalid = false;
@@ -135,13 +136,13 @@ namespace CustomerDataV1
             foreach (Customer customer in myDatabase.Customers)
             {
 
-                   dataGridView2.Rows.Add(
-                    customer.CustomerID,
-                    customer.FirstName,
-                    customer.LastName,
-                    customer.Email,
-                    customer.AccountBalance,
-                    customer.LastChange);
+                dataGridView2.Rows.Add(
+                 customer.CustomerID,
+                 customer.FirstName,
+                 customer.LastName,
+                 customer.Email,
+                 customer.AccountBalance,
+                 customer.LastChange);
 
             }
 
@@ -160,7 +161,7 @@ namespace CustomerDataV1
 
                 if (!myDatabase.IsEmailInDatabase(txtMail.Text))
                 {
-                    throw new ArgumentException("Customer Email not found"); 
+                    throw new ArgumentException("Customer Email not found");
                 }
 
                 Customer customer = myDatabase.FindCustomerByEmail(txtMail.Text);
@@ -284,6 +285,20 @@ namespace CustomerDataV1
         {
             txtboxLname.Clear();
             epErrorMsg.Clear();
+        }
+
+        private void btnBackups_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(backupFolderPath))
+            {
+                myDatabase.StoreCSVData(backupFolderPath + "backup" + DateTime.Now.Year + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second + ".crypt");
+            }
+            else
+            {
+                Directory.CreateDirectory(backupFolderPath);
+                myDatabase.StoreCSVData(backupFolderPath + "backup" + DateTime.Now.Year + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second + ".crypt");
+            }
+            
         }
     }
 }

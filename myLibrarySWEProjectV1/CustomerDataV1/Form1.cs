@@ -135,6 +135,12 @@ namespace CustomerDataV1
             epErrorMsg.Clear();
         }
 
+        private void btnOpt_Click(object sender, EventArgs e)
+        {
+            FormOptions dialog = new FormOptions();
+            dialog.Show();
+        }
+
       
     }
 }
