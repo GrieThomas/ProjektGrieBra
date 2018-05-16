@@ -35,6 +35,7 @@
             this.lblLang = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.epErrorMsg = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnOpt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,11 +89,22 @@
             // 
             this.epErrorMsg.ContainerControl = this;
             // 
+            // btnOpt
+            // 
+            this.btnOpt.Location = new System.Drawing.Point(136, 233);
+            this.btnOpt.Name = "btnOpt";
+            this.btnOpt.Size = new System.Drawing.Size(74, 20);
+            this.btnOpt.TabIndex = 7;
+            this.btnOpt.Text = "options";
+            this.btnOpt.UseVisualStyleBackColor = true;
+            this.btnOpt.Click += new System.EventHandler(this.btnOpt_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(222, 265);
+            this.Controls.Add(this.btnOpt);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblLang);
             this.Controls.Add(this.btnpsw);
@@ -115,6 +127,7 @@
         private System.Windows.Forms.Label lblLang;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ErrorProvider epErrorMsg;
+        private System.Windows.Forms.Button btnOpt;
     }
 }
 

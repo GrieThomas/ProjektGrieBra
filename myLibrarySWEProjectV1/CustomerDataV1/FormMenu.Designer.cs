@@ -46,6 +46,7 @@
             this.gbFindPersonByEmail = new System.Windows.Forms.GroupBox();
             this.gbFunctions = new System.Windows.Forms.GroupBox();
             this.epErrorMsg = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnBackups = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.gbFindPersonByEmail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).BeginInit();
@@ -117,6 +118,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(76, 259);
             this.dataGridView2.Name = "dataGridView2";
@@ -206,11 +208,22 @@
             // 
             this.epErrorMsg.ContainerControl = this;
             // 
+            // btnBackups
+            // 
+            this.btnBackups.Location = new System.Drawing.Point(742, 230);
+            this.btnBackups.Name = "btnBackups";
+            this.btnBackups.Size = new System.Drawing.Size(75, 23);
+            this.btnBackups.TabIndex = 23;
+            this.btnBackups.Text = "backup";
+            this.btnBackups.UseVisualStyleBackColor = true;
+            this.btnBackups.Click += new System.EventHandler(this.btnBackups_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 493);
+            this.Controls.Add(this.btnBackups);
             this.Controls.Add(this.btnMoneyInOut);
             this.Controls.Add(this.btnChangeAttribut);
             this.Controls.Add(this.dataGridView2);
@@ -256,5 +269,6 @@
         private System.Windows.Forms.GroupBox gbFindPersonByEmail;
         private System.Windows.Forms.GroupBox gbFunctions;
         private System.Windows.Forms.ErrorProvider epErrorMsg;
+        private System.Windows.Forms.Button btnBackups;
     }
 }
