@@ -16,11 +16,17 @@ namespace CustomerDataV1
     public partial class Form1 : Form
     {
         private CustomerDatabase myDatabase;
-        private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
-        private string selLangPath = @"..\..\..\init\languageFile.lng";
-        private string initdir = @"..\..\..\init";
+        private string path = @"..\CustomerData.crypt";
+        private string passwordPath = @"..\Init\passwordFile.crypt";
+        private string selLangPath = @"..\Init\languageFile.lng";
+        private string initdir = @"..\Init";
         private string password;
+
+        //private string path = @"CustomerData.crypt";
+        //private string passwordPath = @"init\passwordFile.crypt";
+        //private string selLangPath = @"init\languageFile.lng";
+        //private string initdir = @"init";
+
 
         private string selLang = "English";
         //public string[] languageData;
@@ -39,7 +45,7 @@ namespace CustomerDataV1
                 Directory.CreateDirectory(initdir);
             }
 
-            if (File.Exists(selLangPath) )
+            if (File.Exists(selLangPath))
             {
                 StreamReader sr = new StreamReader(selLangPath);
                 selLang = sr.ReadLine();
@@ -50,7 +56,7 @@ namespace CustomerDataV1
             myDatabase.ReadPassword(passwordPath);
             myDatabase.readStoredData(path);
 
-            
+
 
             comboBox1.Items.Add("English");
             comboBox1.Items.Add("Deutsch");
@@ -94,19 +100,27 @@ namespace CustomerDataV1
             }
         }
 
-        public void LoadLanguageData(string language)
+        private void LoadLanguageData(string language)
         {
-            StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
-            //string text;
-
-            while (!sr.EndOfStream)
+            try
             {
-                for (int i = 0; i < languageData.Length; i++)
+                StreamReader sr = new StreamReader(@"..\Languages\" + this.Name + language + ".txt");
+                //string text;
+
+                while (!sr.EndOfStream)
                 {
-                    languageData[i] = sr.ReadLine();
+                    for (int i = 0; i < languageData.Length; i++)
+                    {
+                        languageData[i] = sr.ReadLine();
+                    }
                 }
+                sr.Close();
             }
-            sr.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
@@ -115,9 +129,6 @@ namespace CustomerDataV1
             StreamWriter sw = new StreamWriter(selLangPath);
             sw.WriteLine(comboBox1.SelectedItem.ToString());
             sw.Close();
-
-
-
 
             LoadLanguageData(comboBox1.SelectedItem.ToString());
             btnpsw.Text = languageData[0];
@@ -130,7 +141,7 @@ namespace CustomerDataV1
         private void txtboxPsw_Enter(object sender, EventArgs e)
         {
             txtboxPsw.Clear();
-            txtboxPsw.Text = "Passwort"; // Debugging
+            //txtboxPsw.Text = "Passwort"; // Debugging
             epErrorMsg.Clear();
         }
 
@@ -139,7 +150,7 @@ namespace CustomerDataV1
             FormOptions dialog = new FormOptions();
             password = dialog.password;
             dialog.Show();
-            
+
         }
 
 

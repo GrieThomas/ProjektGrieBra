@@ -15,13 +15,19 @@ namespace CustomerDataV1
     public partial class FormMenu : Form
     {
         private CustomerDatabase myDatabase;
-        private string path = @"..\..\..\CustomerData.crypt";
-        public string passwordPath = @"..\..\..\init\passwordFile.crypt";
-        private string backupFolderPath = @"..\..\..\backups\";
+        private string path = @"..\CustomerData.crypt";
+        public string passwordPath = @"..\Init\passwordFile.crypt";
+        private string backupFolderPath = @"..\backups\";
         public string language;
         public string[] languageData = new string[30];
         bool FNameInvalid = false;
         bool LNameInvalid = false;
+
+        //private string path = @"CustomerData.crypt";
+        //public string passwordPath = @"init\passwordFile.crypt";
+        //private string selLangPath = @"init\languageFile.lng";
+        //private string initdir = @"init";
+
 
         public FormMenu()
         {
@@ -180,17 +186,25 @@ namespace CustomerDataV1
 
         public void LoadLanguageData(string language)
         {
-            StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
-            //string text;
-
-            while (!sr.EndOfStream)
+            try
             {
-                for (int i = 0; i < languageData.Length; i++)
+                StreamReader sr = new StreamReader(@"..\Languages\" + this.Name + language + ".txt");
+                //string text;
+
+                while (!sr.EndOfStream)
                 {
-                    languageData[i] = sr.ReadLine();
+                    for (int i = 0; i < languageData.Length; i++)
+                    {
+                        languageData[i] = sr.ReadLine();
+                    }
                 }
+                sr.Close();
             }
-            sr.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
         }
 
         private void txtboxFname_Enter(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using myLibrarySWEProject;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace CustomerDataV1
 {
@@ -19,6 +20,11 @@ namespace CustomerDataV1
         private string passwordPath = @"..\..\..\init\passwordFile.crypt";
         public string language;
         public string[] languageData = new string[30];
+
+        //private string path = @"CustomerData.crypt";
+        //private string passwordPath = @"init\passwordFile.crypt";
+        //private string selLangPath = @"init\languageFile.lng";
+        //private string initdir = @"init";
 
         public FormMoneyInOut()
         {
@@ -60,31 +66,47 @@ namespace CustomerDataV1
 
         private void FormMoneyInOut_Load(object sender, EventArgs e)
         {
-            LoadLanguageData(language);
+            try
+            {
+                LoadLanguageData(language);
 
-            this.Text = languageData[0];
-            lblEmail.Text = languageData[1];
-            lblAmount.Text = languageData[2];
-            btnMoneyIn.Text = languageData[3];
-            btnMoneyOut.Text = languageData[4];
-            lblNewBal.Text = languageData[5];
-            btnDone.Text = languageData[6];
-            btnAbort.Text = languageData[7];
+                this.Text = languageData[0];
+                lblEmail.Text = languageData[1];
+                lblAmount.Text = languageData[2];
+                btnMoneyIn.Text = languageData[3];
+                btnMoneyOut.Text = languageData[4];
+                lblNewBal.Text = languageData[5];
+                btnDone.Text = languageData[6];
+                btnAbort.Text = languageData[7];
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
 
         }
         public void LoadLanguageData(string language)
         {
-            StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
-            //string text;
-
-            while (!sr.EndOfStream)
+            try
             {
-                for (int i = 0; i < languageData.Length; i++)
+                StreamReader sr = new StreamReader(@"..\Languages\" + this.Name + language + ".txt");
+                //string text;
+
+                while (!sr.EndOfStream)
                 {
-                    languageData[i] = sr.ReadLine();
+                    for (int i = 0; i < languageData.Length; i++)
+                    {
+                        languageData[i] = sr.ReadLine();
+                    }
                 }
+                sr.Close();
             }
-            sr.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
         }
 
         private void btnGetBalance_Click(object sender, EventArgs e)
