@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testFormApp", "testFormApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerDataV1", "CustomerDataV1\CustomerDataV1.csproj", "{1FE2118A-33AE-428A-8435-299424C36DAB}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Customer Database Setup", "Customer Database Setup\Customer Database Setup.vdproj", "{CD4C8C09-48F6-4999-8351-4DCF82AA2E7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{1FE2118A-33AE-428A-8435-299424C36DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FE2118A-33AE-428A-8435-299424C36DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FE2118A-33AE-428A-8435-299424C36DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4C8C09-48F6-4999-8351-4DCF82AA2E7B}.Debug|Any CPU.ActiveCfg = Debug
+		{CD4C8C09-48F6-4999-8351-4DCF82AA2E7B}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

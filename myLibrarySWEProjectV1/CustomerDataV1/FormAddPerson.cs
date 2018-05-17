@@ -15,8 +15,13 @@ namespace CustomerDataV1
     public partial class FormAddPerson : Form
     {
         private CustomerDatabase myDatabase1;
-        private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
+        private string path = @"..\CustomerData.crypt";
+        private string passwordPath = @"..\Init\passwordFile.crypt";
+
+        //private string path = @"CustomerData.crypt";
+        //private string passwordPath = @"init\passwordFile.crypt";
+        //private string selLangPath = @"init\languageFile.lng";
+        //private string initdir = @"init";
 
         public string language;
         public string[] languageData = new string[10];
@@ -85,16 +90,25 @@ namespace CustomerDataV1
 
         public void LoadLanguageData(string language)
         {
-            StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
-
-            while (!sr.EndOfStream)
+            try
             {
-                for (int i = 0; i < languageData.Length; i++)
+                StreamReader sr = new StreamReader(@"..\Languages\" + this.Name + language + ".txt");
+                //string text;
+
+                while (!sr.EndOfStream)
                 {
-                    languageData[i] = sr.ReadLine();
+                    for (int i = 0; i < languageData.Length; i++)
+                    {
+                        languageData[i] = sr.ReadLine();
+                    }
                 }
+                sr.Close();
             }
-            sr.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
         }
     }
 }

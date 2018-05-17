@@ -13,14 +13,17 @@ namespace CustomerDataV1
 {
     public partial class FormOptions : Form
     {
-        private string backupPath = @"..\..\..\backups";
+        private string backupPath = @"..\backups";
         public string backupFilePath = null;
-        private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
+        private string path = @"..\CustomerData.crypt";
+        private string passwordPath = @"..\Init\passwordFile.crypt";
         private CustomerDatabase myDatabase;
         public string password;
 
-
+        //private string path = @"CustomerData.crypt";
+        //private string passwordPath = @"init\passwordFile.crypt";
+        //private string selLangPath = @"init\languageFile.lng";
+        //private string initdir = @"init";
         public FormOptions()
         {
             InitializeComponent();
