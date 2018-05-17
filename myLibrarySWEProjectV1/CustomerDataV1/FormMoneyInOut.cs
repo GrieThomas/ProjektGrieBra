@@ -16,7 +16,7 @@ namespace CustomerDataV1
     {
         CustomerDatabase myDatabase1;
         private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\initFile.crypt";
+        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
         public string language;
         public string[] languageData = new string[30];
 
@@ -31,23 +31,17 @@ namespace CustomerDataV1
         private void btnMoneyIn_Click(object sender, EventArgs e)
         {
             myDatabase1.FindCustomerByEmail(txtMail.Text).moneyIn(Convert.ToDouble(txtAmount.Text));
-
             myDatabase1.StoreCSVData(path);
 
             txtNewAccountBalance.Text = myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance.ToString();
             txtAmount.Clear();
-
-
-
         }
 
         private void btnMoneyOut_Click(object sender, EventArgs e)
         {
-
             try
             {
                 myDatabase1.FindCustomerByEmail(txtMail.Text).moneyOut(Convert.ToDouble(txtAmount.Text));
-
                 txtNewAccountBalance.Text = myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance.ToString();
 
                 myDatabase1.StoreCSVData(path);
@@ -57,8 +51,6 @@ namespace CustomerDataV1
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         private void btnDone_Click(object sender, EventArgs e)
@@ -87,19 +79,12 @@ namespace CustomerDataV1
 
             while (!sr.EndOfStream)
             {
-                //Console.WriteLine(sr.ReadLine());
-
-                //text = sr.ReadLine();
-                //languageData.Add(text);
-
                 for (int i = 0; i < languageData.Length; i++)
                 {
                     languageData[i] = sr.ReadLine();
                 }
-
             }
             sr.Close();
-
         }
 
         private void btnGetBalance_Click(object sender, EventArgs e)
@@ -116,30 +101,28 @@ namespace CustomerDataV1
             }
         }
 
-
-
         private void txtMail_TextChanged(object sender, EventArgs e)
         {
             groupBox2.Enabled = groupBox3.Enabled = false;
         }
 
-
         private void txtAmount_KeyUp(object sender, KeyEventArgs e)
         {
             double amount;
             txtAmount.BackColor = DefaultBackColor;
+
+            btnMoneyIn.Enabled = true;
+            btnMoneyOut.Enabled = true;
             epErrorMsg.Clear();
 
             try
             {
                 if (!Double.TryParse(txtAmount.Text, out amount))
                 {
-                    throw new ArgumentException("Entry not valid");
-                }
+                    btnMoneyIn.Enabled = false;
+                    btnMoneyOut.Enabled = false;
 
-                if (amount > myDatabase1.FindCustomerByEmail(txtMail.Text).AccountBalance)
-                {
-                    txtAmount.BackColor = Color.Crimson;
+                    throw new ArgumentException("Entry not valid");
                 }
             }
             catch (Exception ex)

@@ -49,8 +49,6 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(182, 20);
             this.txtMail.TabIndex = 30;
-            this.txtMail.Validating += new System.ComponentModel.CancelEventHandler(this.txtMail_Validating);
-            this.txtMail.Validated += new System.EventHandler(this.txtMail_Validated);
             // 
             // txtboxLname
             // 
@@ -74,8 +72,6 @@
             this.txtboxFname.Name = "txtboxFname";
             this.txtboxFname.Size = new System.Drawing.Size(88, 20);
             this.txtboxFname.TabIndex = 10;
-            this.txtboxFname.Enter += new System.EventHandler(this.txtboxFname_Enter);
-            this.txtboxFname.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxFname_Validating);
             // 
             // lblLname
             // 
@@ -104,7 +100,6 @@
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            this.btnOk.Validated += new System.EventHandler(this.btnOk_Validated);
             // 
             // btnAbort
             // 

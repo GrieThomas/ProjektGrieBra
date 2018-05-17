@@ -14,21 +14,26 @@ namespace CustomerDataV1
     public partial class FormOptions : Form
     {
         private string backupPath = @"..\..\..\backups";
-        public string backupFilePath;
+        public string backupFilePath = null;
         private string path = @"..\..\..\CustomerData.crypt";
+        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
         private CustomerDatabase myDatabase;
+        public string password;
 
 
         public FormOptions()
         {
             InitializeComponent();
             myDatabase = new CustomerDatabase();
+            myDatabase.ReadPassword(passwordPath);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            backupFilePath = backupPath + "\\" + openFileDialog1.SafeFileName;
+
+            backupFilePath = openFileDialog1.FileName;
+            //backupFilePath = backupPath + "\\" + openFileDialog1.SafeFileName;
             textBox1.Text = backupFilePath;
 
         }
@@ -37,7 +42,7 @@ namespace CustomerDataV1
         {
             folderBrowserDialog1.ShowDialog();
             backupPath = folderBrowserDialog1.SelectedPath;
-            
+
             textBox1.Text = backupPath;
         }
 
@@ -48,9 +53,43 @@ namespace CustomerDataV1
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            myDatabase.readStoredData(backupFilePath);
-          
-            myDatabase.StoreCSVData(path);
+
+
+
+            if (tbxOldPass.Text.Equals(myDatabase.Password))
+            {
+                password = tbxNewPass.Text;
+                myDatabase.ChangePassword(passwordPath, path, password);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Old Password is incorrect");
+            }
+
+        }
+
+        private void FormOptions_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLoadBackup_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (backupFilePath != null)
+                {
+                    myDatabase.readStoredData(backupFilePath);
+                    myDatabase.StoreCSVData(path);
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 

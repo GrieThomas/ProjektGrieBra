@@ -44,6 +44,8 @@
             this.gbChEmail = new System.Windows.Forms.GroupBox();
             this.btnAbort = new System.Windows.Forms.Button();
             this.epErrorMsg = new System.Windows.Forms.ErrorProvider(this.components);
+            this.gpChLstName.SuspendLayout();
+            this.gbChEmail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,22 +61,22 @@
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(104, 108);
+            this.txtMail.Location = new System.Drawing.Point(34, 108);
             this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(88, 20);
+            this.txtMail.Size = new System.Drawing.Size(158, 20);
             this.txtMail.TabIndex = 24;
             // 
             // txtboxLname
             // 
-            this.txtboxLname.Location = new System.Drawing.Point(104, 53);
+            this.txtboxLname.Location = new System.Drawing.Point(22, 43);
             this.txtboxLname.Name = "txtboxLname";
-            this.txtboxLname.Size = new System.Drawing.Size(88, 20);
+            this.txtboxLname.Size = new System.Drawing.Size(158, 20);
             this.txtboxLname.TabIndex = 25;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(31, 111);
+            this.lblEmail.Location = new System.Drawing.Point(19, 66);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(34, 13);
             this.lblEmail.TabIndex = 21;
@@ -83,7 +85,7 @@
             // lblLname
             // 
             this.lblLname.AutoSize = true;
-            this.lblLname.Location = new System.Drawing.Point(31, 56);
+            this.lblLname.Location = new System.Drawing.Point(19, 27);
             this.lblLname.Name = "lblLname";
             this.lblLname.Size = new System.Drawing.Size(52, 13);
             this.lblLname.TabIndex = 22;
@@ -102,7 +104,7 @@
             // lblNewEmail
             // 
             this.lblNewEmail.AutoSize = true;
-            this.lblNewEmail.Location = new System.Drawing.Point(278, 113);
+            this.lblNewEmail.Location = new System.Drawing.Point(21, 66);
             this.lblNewEmail.Name = "lblNewEmail";
             this.lblNewEmail.Size = new System.Drawing.Size(57, 13);
             this.lblNewEmail.TabIndex = 21;
@@ -110,9 +112,9 @@
             // 
             // txtNewMail
             // 
-            this.txtNewMail.Location = new System.Drawing.Point(351, 110);
+            this.txtNewMail.Location = new System.Drawing.Point(281, 110);
             this.txtNewMail.Name = "txtNewMail";
-            this.txtNewMail.Size = new System.Drawing.Size(88, 20);
+            this.txtNewMail.Size = new System.Drawing.Size(158, 20);
             this.txtNewMail.TabIndex = 24;
             // 
             // btnDone
@@ -129,7 +131,7 @@
             // lblEmail2
             // 
             this.lblEmail2.AutoSize = true;
-            this.lblEmail2.Location = new System.Drawing.Point(278, 56);
+            this.lblEmail2.Location = new System.Drawing.Point(21, 27);
             this.lblEmail2.Name = "lblEmail2";
             this.lblEmail2.Size = new System.Drawing.Size(34, 13);
             this.lblEmail2.TabIndex = 21;
@@ -137,13 +139,16 @@
             // 
             // txtOldMail
             // 
-            this.txtOldMail.Location = new System.Drawing.Point(351, 53);
+            this.txtOldMail.Location = new System.Drawing.Point(24, 43);
             this.txtOldMail.Name = "txtOldMail";
-            this.txtOldMail.Size = new System.Drawing.Size(88, 20);
+            this.txtOldMail.Size = new System.Drawing.Size(158, 20);
             this.txtOldMail.TabIndex = 24;
             // 
             // gpChLstName
             // 
+            this.gpChLstName.Controls.Add(this.lblEmail);
+            this.gpChLstName.Controls.Add(this.lblLname);
+            this.gpChLstName.Controls.Add(this.txtboxLname);
             this.gpChLstName.Location = new System.Drawing.Point(12, 26);
             this.gpChLstName.Name = "gpChLstName";
             this.gpChLstName.Size = new System.Drawing.Size(200, 179);
@@ -153,6 +158,9 @@
             // 
             // gbChEmail
             // 
+            this.gbChEmail.Controls.Add(this.lblEmail2);
+            this.gbChEmail.Controls.Add(this.txtOldMail);
+            this.gbChEmail.Controls.Add(this.lblNewEmail);
             this.gbChEmail.Location = new System.Drawing.Point(257, 26);
             this.gbChEmail.Name = "gbChEmail";
             this.gbChEmail.Size = new System.Drawing.Size(200, 179);
@@ -184,13 +192,7 @@
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnChange2);
             this.Controls.Add(this.txtNewMail);
-            this.Controls.Add(this.txtOldMail);
             this.Controls.Add(this.txtMail);
-            this.Controls.Add(this.lblNewEmail);
-            this.Controls.Add(this.lblEmail2);
-            this.Controls.Add(this.txtboxLname);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.lblLname);
             this.Controls.Add(this.btnChange1);
             this.Controls.Add(this.gbChEmail);
             this.Controls.Add(this.gpChLstName);
@@ -198,6 +200,10 @@
             this.Text = "FormChangeAttr";
             this.Load += new System.EventHandler(this.FormChangeAttr_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormChangeAttr_MouseMove);
+            this.gpChLstName.ResumeLayout(false);
+            this.gpChLstName.PerformLayout();
+            this.gbChEmail.ResumeLayout(false);
+            this.gbChEmail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epErrorMsg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

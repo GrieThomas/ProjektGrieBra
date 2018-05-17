@@ -12,6 +12,9 @@ namespace myLibrarySWEProject
 {
     public class CustomerDatabase
     {
+
+        #region members
+
         private List<Customer> customers = new List<Customer>();
         private int count;
 
@@ -26,6 +29,9 @@ namespace myLibrarySWEProject
         //    //count = 0;
         //}
 
+        #endregion
+
+        #region Get Set
         public List<Customer> Customers
         {
             get { return customers; }
@@ -40,10 +46,13 @@ namespace myLibrarySWEProject
 
         public string Password // Get eventuell auf private setzen
         {
-             get { return password; }
+            get { return password; }
             set { password = value; }
         }
-        
+
+        #endregion
+
+        #region methods
 
         public int AddCustomer(string firstname, string lastname, string email)
         {
@@ -61,13 +70,6 @@ namespace myLibrarySWEProject
 
         public Customer FindCustomerByName(string firstName, string lastName)
         {
-
-            //Customer actCustomer = customers.First();
-
-            //while (actCustomer.FirstName != firstName && actCustomer.LastName != lastName && actCustomer == customers.Last())
-            //{
-            //    counter++;
-            //}
             foreach (Customer actCustomer in customers)
             {
                 if (actCustomer.FirstName == firstName && actCustomer.LastName == lastName)
@@ -76,8 +78,6 @@ namespace myLibrarySWEProject
                 }
             }
             throw new ArgumentException("Customer Name not found");
-            //return null;
-
         }
 
         public Customer FindCustomerByEmail(string Email)
@@ -90,8 +90,6 @@ namespace myLibrarySWEProject
                 }
             }
             throw new ArgumentException("Customer Email not found");
-            //return null;
-
         }
         public bool IsEmailInDatabase(string Email)
         {
@@ -101,7 +99,7 @@ namespace myLibrarySWEProject
                 {
                     return true;
                 }
-            } 
+            }
             return false;
         }
 
@@ -137,29 +135,23 @@ namespace myLibrarySWEProject
             {
                 throw new ArgumentException("New Email already exists");
             }
-            //if (FindCustomerByEmail(newEmail) == null && FindCustomerByEmail(email) != null)// neue darf nicht vorhanden sein, alte muss vorhanden sein
-            //{
-            //    FindCustomerByEmail(email).changeEmail(newEmail);
-            //    return true;
-            //}
-                FindCustomerByEmail(email).changeEmail(newEmail);
-            //return false;
+
+            FindCustomerByEmail(email).changeEmail(newEmail);
         }
 
         public void readStoredData(string path)
         {
-            //path = @"..\..\..\CustomerData.crypt";
+            if (!File.Exists(path))
+            {
+                StoreCSVData(path);
+            }
+
             StreamReader sr = new StreamReader(path);
             string[] data;
 
             while (!sr.EndOfStream)
             {
                 data = sr.ReadLine().Split(';');
-
-                //foreach (var var in data)
-                //{
-                //    var = Decrypt(var, password);
-                //}
 
                 for (int i = 0; i < data.Length; i++)
                 {
@@ -169,72 +161,94 @@ namespace myLibrarySWEProject
 
                 if (data.Length == 6)
                 {
-                    if (this.FindCustomerByID(Convert.ToInt32(data[0])) == null)//Abfrage ob Customer bereits vorhanden
+                    try
+                    {
+if (this.FindCustomerByID(Convert.ToInt32(data[0])) == null)//Abfrage ob Customer bereits vorhanden
                     {
                         customers.Add(new Customer(Convert.ToInt32(data[0]), data[1], data[2], data[3], Convert.ToDouble(data[4]), Convert.ToDateTime(data[5])));
                         count++;
                     }
+                    }
+                    catch (Exception e)
+                    {
+                        
+                        throw new ArgumentException("Invalid Data");
+                    }
+                    
                 }
             }
             sr.Close();
         }
 
-        //public List<Customer> getCustomerDatabase()
-        //{
-        //    return 
-        //}
-
         public void ReadCSVData(string path)
         {
-            //Check if File is existent 
-            //path = @"..\..\..\CustomerData.crypt";
+            if (!File.Exists(path))
+            {
+                File.Create(path);
+            }
             StreamReader sr = new StreamReader(path);
 
             while (!sr.EndOfStream)
             {
                 Console.WriteLine(sr.ReadLine());
             }
-
             sr.Close();
         }
 
-        //public void StoreCSVData()
-        //{
-
-        //    StreamWriter sw = new StreamWriter(@"..\..\..\CustomerData.csv");
-        //    sw.WriteLine("Customers");
-
-        //    foreach (Customer actCustomer in customers)
-        //    {
-        //        sw.WriteLine(Convert.ToString(actCustomer.CustomerID) + ';' + actCustomer.FirstName + ';' + actCustomer.LastName + ';' + actCustomer.Email + ';' + actCustomer.AccountBalance + ';' + actCustomer.LastChange);
-        //    }
-
-        //    sw.Close();
-        //}
-
         public void StoreCSVData(string path)
         {
+
+            //if (!File.Exists(path))
+            //{
+            //    File.Create(path);
+            //}
 
             StreamWriter sw = new StreamWriter(path);
             sw.WriteLine("ID;FirstName;LastName;E-Mail;Time");
 
             foreach (Customer actCustomer in customers)
             {
-                sw.WriteLine(Convert.ToString(Encrypt(Convert.ToString(actCustomer.CustomerID),password)) 
-                    + ';' + 
-                    Encrypt(actCustomer.FirstName,password) 
-                    + ';' + 
-                    Encrypt(actCustomer.LastName,password) 
-                    + ';' + 
-                    Encrypt(actCustomer.Email,password) 
-                    + ';' + 
-                    Encrypt(Convert.ToString(actCustomer.AccountBalance),password) 
-                    + ';' + 
-                    Encrypt(Convert.ToString(actCustomer.LastChange),password));
+                sw.WriteLine(Convert.ToString(Encrypt(Convert.ToString(actCustomer.CustomerID), password))
+                    + ';' +
+                    Encrypt(actCustomer.FirstName, password)
+                    + ';' +
+                    Encrypt(actCustomer.LastName, password)
+                    + ';' +
+                    Encrypt(actCustomer.Email, password)
+                    + ';' +
+                    Encrypt(Convert.ToString(actCustomer.AccountBalance), password)
+                    + ';' +
+                    Encrypt(Convert.ToString(actCustomer.LastChange), password));
             }
-
             sw.Close();
         }
+
+        public void ChangePassword(string Initpath, string dataPath, string newPassword)
+        {
+            password = newPassword; // schreiben des neuen Passworts
+            StreamWriter sw = new StreamWriter(Initpath);
+            sw.WriteLine(Encrypt(newPassword, encryptinionKey)); //Ablegen des neuen Passworts
+            sw.Close();
+            StoreCSVData(dataPath);//Daten mit neuem Passwort erneut ablegen
+        }
+
+        public string ReadPassword(string path)
+        {
+
+            if (File.Exists(path))
+            {
+                StreamReader sr = new StreamReader(path);
+                password = Decrypt(sr.ReadLine(), encryptinionKey);//Lesen des Passworts aus dem Init File
+                sr.Close();
+
+            }
+            return password;
+
+        }
+
+        #endregion
+
+        #region static methods
 
         public static string Encrypt(string clearText, string password)
         {
@@ -257,6 +271,7 @@ namespace myLibrarySWEProject
             }
             return clearText;
         }
+
         public static string Decrypt(string cipherText, string password)
         {
             string EncryptionKey = password;
@@ -288,22 +303,7 @@ namespace myLibrarySWEProject
             return cipherText;
         }
 
+        #endregion
 
-        public void ChangePassword(string Initpath,string dataPath, string newPassword)
-        {
-            password = newPassword; // schreiben des neuen Passworts
-            StreamWriter sw = new StreamWriter(Initpath);
-            sw.WriteLine(Encrypt(newPassword,encryptinionKey)); //Ablegen des neuen Passworts
-            sw.Close();
-            StoreCSVData(dataPath);//Daten mit neuem Passwort erneut ablegen
-        }
-
-        public string ReadPassword(string path)
-        {
-            StreamReader sr = new StreamReader(path);
-            password = Decrypt(sr.ReadLine(), encryptinionKey);//Lesen des Passworts aus dem Init File
-            sr.Close();
-            return password;
-        }
     }
 }

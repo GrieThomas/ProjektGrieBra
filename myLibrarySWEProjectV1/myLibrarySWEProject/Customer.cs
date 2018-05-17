@@ -24,7 +24,7 @@ namespace myLibrarySWEProject
 
         #endregion
 
-        #region Konstruktoren
+        #region Constructors
 
         public Customer(int customerID, string firstName, string lastName, string email)
         {
@@ -89,13 +89,21 @@ namespace myLibrarySWEProject
 
         # endregion
 
-        # region Methoden
+        # region methods
+
+        //***********************************************
+        // Method for adding Money to a customers account
+        //***********************************************
 
         public void moneyIn(double val)
         {
             AccountBalance += val;
             LastChange = DateTime.Now;
         }
+
+        //**************************************************
+        // Method for take out Money of a customers account
+        //**************************************************
 
         public void moneyOut(double val)
         {
@@ -108,14 +116,20 @@ namespace myLibrarySWEProject
             {
                 throw new ArgumentException("Not enough money available");
             }
-            
-
         }
+
+        //***********************************************
+        // Method for changing a customers last name
+        //***********************************************
 
         public void changeLastName(string newLastName)
         {
             LastName = newLastName;
         }
+
+        //***********************************************
+        // Method for changing a customers email
+        //***********************************************
 
         public void changeEmail(string newEmail)
         {
@@ -124,7 +138,7 @@ namespace myLibrarySWEProject
 
         #endregion
 
-        #region overide methoden
+        #region overide methods
 
         public override string ToString()
         {
@@ -133,7 +147,11 @@ namespace myLibrarySWEProject
 
         #endregion
 
-        #region Statische Methoden
+        #region static methods
+
+        //***********************************************
+        // Method for checking if email address is valid
+        //***********************************************
 
         public static bool CheckEmail(string mail)
         {
@@ -141,13 +159,15 @@ namespace myLibrarySWEProject
             int countTest2 = 0;
             int countTest3 = 0;
             int positionOfAt = 0;
-          
 
 
+            //***********************************
             // Test0: String should not be empty
+            //***********************************
+
             if (mail.Equals(String.Empty))
             {
-                throw new ArgumentException("Empty String");
+                throw new ArgumentException("No Email entered");
             }
 
             for (int i = 0; i < mail.Length; i++)
@@ -155,20 +175,26 @@ namespace myLibrarySWEProject
                 Console.Write(Convert.ToInt32(mail[i]));
                 Console.WriteLine(mail[i]);
 
+                //***********************************
                 // Test1: must contain exactly one @ 
+                //***********************************
+
                 if (Convert.ToInt32(mail[i]) == 64)
                 {
                     countTest1++;
                     positionOfAt = i;
                 }
+                //***********************************
                 // Test2: at least one . after the @
-
+                //***********************************
+                
                 if (countTest1 == 1 && mail[i].Equals('.'))
                 {
                     countTest2++;
                 }
-
+                //**********************************************************************
                 // Test3:after final . must be 2-4 letters (Domain must be 2-4 letters)
+                //**************************************************************************
 
                 if (mail[mail.Length - 1 - i].Equals('.') && countTest3 == 0)
                 {
@@ -199,8 +225,9 @@ namespace myLibrarySWEProject
                 throw new ArgumentException("Domain must be 2-4 letters");
             }
 
-
+            //*********************************************************
             // Test4:There must be at least one character before the @
+            //*********************************************************
 
             for (int i = 0; i < mail.Length; i++)
             {
@@ -209,12 +236,6 @@ namespace myLibrarySWEProject
                     throw new ArgumentException("There must be at least one character before the @");
                 }
             }
-
-            // Test 5: Check for invalid characters
-            //if (!Regex.IsMatch(mail, @"^[a-zA-Z0-9.#%&'*+/=?^`{|}!@~$_-]+$"))
-            //{
-            //    return false;
-            //}
 
             string validSigns = "abcdefghijklmnopqrstuvwxyz" +
                                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
@@ -228,21 +249,10 @@ namespace myLibrarySWEProject
                     throw new ArgumentException("Invalid Characters used");
                 }
             }
-
-            //for (int j = 0; j < validSigns.Length; j++)
-            //{
-            //    for (int i = 0; i < mail.Length; i++)
-            //    {
-            //        if (mail[i].Equals(validSigns[j]))
-            //        {
-            //            throw new ArgumentException("Invalid Characters used");
-            //        }
-
-            //    }
-            //}
-
-
+            //**************************************************************************
             //Test 6: There must not be a.at the start, end or just before/ after the @
+            //**************************************************************************
+
             if (mail[0].Equals('.') 
                 || 
                 mail[mail.Length - 1].Equals('.')
@@ -253,26 +263,6 @@ namespace myLibrarySWEProject
             {
                 throw new ArgumentException("There must not be a.at the start, end or just before/ after the @");
             }
-
-            //// Check result of Test 1,2,3,5
-
-            //if (countTest1 != 1)
-            //{
-            //    throw new ArgumentException("Invalid Characters used");
-            //}
-            //if (countTest2 < 1)
-            //{
-            //    throw new ArgumentException("Invalid Characters used");
-            //}
-            //if (countTest3 <= 1)
-            //{
-            //    throw new ArgumentException("Invalid Characters used");
-            //}
-            //if (countTest3 >= 5)
-            //{
-            //    throw new ArgumentException("Invalid Characters used");
-            //}
-
             return true;
         }
 
@@ -284,7 +274,7 @@ namespace myLibrarySWEProject
 
             if (name.Equals(String.Empty))
             {
-                throw new ArgumentException("Eingabe erforderlich");
+                throw new ArgumentException("Entry needed");
             }
 
 
@@ -292,12 +282,12 @@ namespace myLibrarySWEProject
             {
                 if (Int32.TryParse(Convert.ToString(name[i]), out test))
                 {
-                    throw new ArgumentException("Name darf keine Zahl enthalten");
+                    throw new ArgumentException("No numbers allowed in name");
                 }
             }
             if (!Char.IsUpper(name[0]))
             {
-                throw new ArgumentException("Name muss mit Großbuchstaben beginnen");
+                throw new ArgumentException("Name must begin with capital letter");
             }
             for (int i = 1; i < name.Length; i++)
             {
@@ -308,7 +298,7 @@ namespace myLibrarySWEProject
             }
             if (count < 2)
             {
-                throw new ArgumentException("Name muss min 2 Kleinbuchstaben enthalten");
+                throw new ArgumentException("Name must contain at least two lower case letters");
             }
             return valid;
         }
