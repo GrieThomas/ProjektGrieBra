@@ -86,7 +86,6 @@
             this.txtboxLname.Size = new System.Drawing.Size(88, 20);
             this.txtboxLname.TabIndex = 12;
             this.txtboxLname.Enter += new System.EventHandler(this.txtboxLname_Enter);
-            this.txtboxLname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxLname_KeyDown);
             // 
             // lblEmail
             // 
@@ -172,7 +171,6 @@
             this.txtboxFname.Size = new System.Drawing.Size(88, 20);
             this.txtboxFname.TabIndex = 13;
             this.txtboxFname.Enter += new System.EventHandler(this.txtboxFname_Enter);
-            this.txtboxFname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxFname_KeyDown);
             // 
             // gbFindPersonByName
             // 
@@ -240,7 +238,6 @@
             this.Name = "FormMenu";
             this.Text = "FormMenu";
             this.Load += new System.EventHandler(this.FormMenu_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormMenu_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.gbFindPersonByEmail.ResumeLayout(false);
             this.gbFindPersonByEmail.PerformLayout();

@@ -16,7 +16,7 @@ namespace CustomerDataV1
     {
         private CustomerDatabase myDatabase;
         private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\initFile.crypt";
+        public string passwordPath = @"..\..\..\init\passwordFile.crypt";
         private string backupFolderPath = @"..\..\..\backups\";
         public string language;
         public string[] languageData = new string[30];
@@ -37,7 +37,6 @@ namespace CustomerDataV1
             dataGridView2.Columns.Add("5", "Account balance");
             dataGridView2.Columns.Add("6", "Last change");
             // btnFindPers.Enabled = false;
-
         }
 
         private void FormMenu_Load(object sender, EventArgs e)
@@ -62,9 +61,6 @@ namespace CustomerDataV1
             gbFunctions.Text = languageData[15];
             gbFindPersonByName.Text = languageData[16];
             gbFindPersonByEmail.Text = languageData[17];
-
-
-
         }
 
         private void btnFindPers_Click(object sender, EventArgs e)
@@ -86,15 +82,9 @@ namespace CustomerDataV1
                     customer.Email,
                     customer.AccountBalance,
                     customer.LastChange);
-
             }
             catch (Exception ex)
             {
-                //epErrorMsg.SetError(btnFindPers, ex.Message);
-                //MessageBox.Show(ex.Message);
-                //txtboxLname.Clear();
-                //txtboxFname.Clear();
-
                 if (FNameInvalid)
                 {
                     epErrorMsg.SetError(txtboxFname, ex.Message);
@@ -110,8 +100,6 @@ namespace CustomerDataV1
 
                 FNameInvalid = false;
                 LNameInvalid = false;
-
-                //epErrorMsg.Clear();
             }
 
         }
@@ -121,21 +109,17 @@ namespace CustomerDataV1
             FormAddPerson dialog = new FormAddPerson();
             dialog.language = language;
             dialog.ShowDialog();
-
         }
 
         private void btnshowall_Click(object sender, EventArgs e)
         {
-            //string colname = "1";
-            //string header = "Header";
-
             dataGridView2.Rows.Clear();
             myDatabase = new CustomerDatabase();
             myDatabase.ReadPassword(passwordPath);
             myDatabase.readStoredData(path);
+
             foreach (Customer customer in myDatabase.Customers)
             {
-
                 dataGridView2.Rows.Add(
                  customer.CustomerID,
                  customer.FirstName,
@@ -143,14 +127,7 @@ namespace CustomerDataV1
                  customer.Email,
                  customer.AccountBalance,
                  customer.LastChange);
-
             }
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnFindPersEmail_Click(object sender, EventArgs e)
@@ -179,15 +156,13 @@ namespace CustomerDataV1
                 MessageBox.Show(ex.Message);
                 txtMail.Clear();
             }
-
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            myDatabase.changeName(txtboxLname.Text, txtMail.Text);
-            myDatabase.StoreCSVData(path);
-        }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    myDatabase.changeName(txtboxLname.Text, txtMail.Text);
+        //    myDatabase.StoreCSVData(path);
+        //}
 
         private void btnChangeAttribut_Click(object sender, EventArgs e)
         {
@@ -202,6 +177,7 @@ namespace CustomerDataV1
             dialog.language = language;
             dialog.ShowDialog();
         }
+
         public void LoadLanguageData(string language)
         {
             StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
@@ -209,70 +185,12 @@ namespace CustomerDataV1
 
             while (!sr.EndOfStream)
             {
-                //Console.WriteLine(sr.ReadLine());
-
-                //text = sr.ReadLine();
-                //languageData.Add(text);
-
                 for (int i = 0; i < languageData.Length; i++)
                 {
                     languageData[i] = sr.ReadLine();
                 }
-
             }
             sr.Close();
-
-        }
-
-
-
-
-        private void txtboxFname_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            //try
-            //{
-            //    if (Customer.IsNameCorrect(txtboxFname.Text))
-            //    {
-            //        FNameInvalid = true;
-            //        epErrorMsg.Clear();
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    epErrorMsg.SetError(txtboxFname, ex.Message);
-
-            //}
-
-        }
-
-        private void txtboxLname_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            //try
-            //{
-            //    if (Customer.IsNameCorrect(txtboxLname.Text))
-            //    {
-
-            //       LNameInvalid = true;
-            //        epErrorMsg.Clear();
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    epErrorMsg.SetError(txtboxLname, ex.Message);
-            //}
-
-        }
-
-        private void FormMenu_MouseMove(object sender, MouseEventArgs e)
-        {
-            //if (LNameInvalid && FNameInvalid)
-            //{
-            //    btnFindPers.Enabled = true;
-            //}
         }
 
         private void txtboxFname_Enter(object sender, EventArgs e)

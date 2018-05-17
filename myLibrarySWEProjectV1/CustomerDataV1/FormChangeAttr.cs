@@ -16,7 +16,7 @@ namespace CustomerDataV1
     {
         CustomerDatabase myDatabase1;
         private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\initFile.crypt";
+        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
         public string language;
         public string[] languageData = new string[30];
 
@@ -86,7 +86,7 @@ namespace CustomerDataV1
 
             try
             {
-                Customer.CheckEmail(txtNewMail.Text);
+                Customer.CheckEmail(txtOldMail.Text);
             }
             catch (Exception ex)
             {
@@ -115,11 +115,6 @@ namespace CustomerDataV1
             this.Close();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FormChangeAttr_Load(object sender, EventArgs e)
         {
             LoadLanguageData(language);
@@ -139,23 +134,15 @@ namespace CustomerDataV1
         public void LoadLanguageData(string language)
         {
             StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
-            //string text;
 
             while (!sr.EndOfStream)
             {
-                //Console.WriteLine(sr.ReadLine());
-
-                //text = sr.ReadLine();
-                //languageData.Add(text);
-
                 for (int i = 0; i < languageData.Length; i++)
                 {
                     languageData[i] = sr.ReadLine();
                 }
-
             }
             sr.Close();
-
         }
 
         private void FormChangeAttr_MouseMove(object sender, MouseEventArgs e)

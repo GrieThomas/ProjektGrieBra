@@ -17,36 +17,51 @@ namespace CustomerDataV1
     {
         private CustomerDatabase myDatabase;
         private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\initFile.crypt";
+        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
+        private string selLangPath = @"..\..\..\init\languageFile.lng";
+        private string initdir = @"..\..\..\init";
+        private string password;
+
+        private string selLang = "English";
         //public string[] languageData;
         //public List<string> languageData = new List<string>();
-        
+
         public string[] languageData = new string[3];
-        
-
-        
-
-        // string password;
 
         public Form1()
         {
-            
+
             InitializeComponent();
             myDatabase = new CustomerDatabase();
+
+            if (!Directory.Exists(initdir))
+            {
+                Directory.CreateDirectory(initdir);
+            }
+
+            if (File.Exists(selLangPath) )
+            {
+                StreamReader sr = new StreamReader(selLangPath);
+                selLang = sr.ReadLine();
+                sr.Close();
+            }
+
+
             myDatabase.ReadPassword(passwordPath);
             myDatabase.readStoredData(path);
 
+            
+
             comboBox1.Items.Add("English");
             comboBox1.Items.Add("Deutsch");
-            comboBox1.SelectedItem = "English";
+            comboBox1.SelectedItem = selLang;
             this.Text = "Start";
-
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             LoadLanguageData(comboBox1.SelectedItem.ToString());
             btnpsw.Text = languageData[0];
             lblPsw.Text = languageData[1];
@@ -55,31 +70,16 @@ namespace CustomerDataV1
 
         private void btnpsw_Click(object sender, EventArgs e)
         {
-           
-                //if (txtboxPsw.Text.Equals(myDatabase.Password))
-                //{
-
-
-                //    //switch to Form Menu
-                //    FormMenu dialog = new FormMenu();
-                //    dialog.language = comboBox1.SelectedItem.ToString();
-                //    dialog.ShowDialog();
-
-                //    txtboxPsw.Clear();
-                //}
+            myDatabase.ReadPassword(passwordPath);
             try
             {
-
-
                 if (txtboxPsw.Text.Equals(myDatabase.Password))
                 {
-
-
                     //switch to Form Menu
                     FormMenu dialog = new FormMenu();
                     dialog.language = comboBox1.SelectedItem.ToString();
+                    dialog.passwordPath = passwordPath;
                     dialog.ShowDialog();
-
                     txtboxPsw.Clear();
                 }
                 else
@@ -91,9 +91,7 @@ namespace CustomerDataV1
             {
                 epErrorMsg.SetError(txtboxPsw, ex.Message);
                 //e.Cancel = false;
-
             }
-           
         }
 
         public void LoadLanguageData(string language)
@@ -103,30 +101,31 @@ namespace CustomerDataV1
 
             while (!sr.EndOfStream)
             {
-                //Console.WriteLine(sr.ReadLine());
-
-                //text = sr.ReadLine();
-                //languageData.Add(text);
-
                 for (int i = 0; i < languageData.Length; i++)
                 {
                     languageData[i] = sr.ReadLine();
                 }
-                
             }
             sr.Close();
-           
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
+
+            StreamWriter sw = new StreamWriter(selLangPath);
+            sw.WriteLine(comboBox1.SelectedItem.ToString());
+            sw.Close();
+
+
+
+
             LoadLanguageData(comboBox1.SelectedItem.ToString());
             btnpsw.Text = languageData[0];
             lblPsw.Text = languageData[1];
             lblLang.Text = languageData[2];
-        }
 
-      
+
+        }
 
         private void txtboxPsw_Enter(object sender, EventArgs e)
         {
@@ -138,9 +137,13 @@ namespace CustomerDataV1
         private void btnOpt_Click(object sender, EventArgs e)
         {
             FormOptions dialog = new FormOptions();
+            password = dialog.password;
             dialog.Show();
+            
         }
 
-      
+
+
+
     }
 }

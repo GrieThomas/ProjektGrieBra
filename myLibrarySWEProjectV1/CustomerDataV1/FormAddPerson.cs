@@ -14,9 +14,9 @@ namespace CustomerDataV1
 {
     public partial class FormAddPerson : Form
     {
-        CustomerDatabase myDatabase1;
+        private CustomerDatabase myDatabase1;
         private string path = @"..\..\..\CustomerData.crypt";
-        private string passwordPath = @"..\..\..\initFile.crypt";
+        private string passwordPath = @"..\..\..\init\passwordFile.crypt";
 
         public string language;
         public string[] languageData = new string[10];
@@ -42,10 +42,6 @@ namespace CustomerDataV1
             {
                 error = true;
                 epErrorMessage.SetError(txtboxFname, ex.Message);
-                //hpEntryErrors.SetHelpString(txtboxFname, ex.Message);
-                //toolTip1.SetToolTip(txtboxFname, ex.Message);
-                //tpErrorMsg.Show(ex.Message,txtboxFname);
-                //tpErrorMsg.SetToolTip(txtboxFname, ex.Message);
             }
 
             try
@@ -56,7 +52,6 @@ namespace CustomerDataV1
             {
                 error = true;
                 epErrorMessage.SetError(txtboxLname, ex.Message);
-                //tpErrorMsg.Show(ex.Message, txtboxLname);
             }
 
             try
@@ -67,7 +62,6 @@ namespace CustomerDataV1
             {
                 error = true;
                 epErrorMessage.SetError(txtMail, ex.Message);
-                //tpErrorMsg.Show(ex.Message, txtMail);
             }
 
             if (!error)
@@ -76,12 +70,6 @@ namespace CustomerDataV1
                 myDatabase1.StoreCSVData(path);
                 DialogResult = DialogResult.OK;
             }
-            //epErrorMessage.Clear();
-
-            //this.Close();
-
-
-
         }
 
         private void FormAddPerson_Load(object sender, EventArgs e)
@@ -98,60 +86,15 @@ namespace CustomerDataV1
         public void LoadLanguageData(string language)
         {
             StreamReader sr = new StreamReader(@"..\..\..\Languages\" + this.Name + language + ".txt");
-            //string text;
 
             while (!sr.EndOfStream)
             {
-                //Console.WriteLine(sr.ReadLine());
-
-                //text = sr.ReadLine();
-                //languageData.Add(text);
-
                 for (int i = 0; i < languageData.Length; i++)
                 {
                     languageData[i] = sr.ReadLine();
                 }
-
             }
             sr.Close();
-
         }
-
-        private void txtMail_Validating(object sender, CancelEventArgs e)
-        {
-            //try
-            //{
-            //    Customer.CheckEmail(txtMail.Text);
-            //    epErrorMessage.Clear();
-            //}
-            //catch (Exception ex)
-            //{
-            //    epErrorMessage.SetError(txtMail, ex.Message);
-            //    e.Cancel = false;
-
-            //}
-        }
-
-        private void btnOk_Validated(object sender, EventArgs e)
-        {
-            //btnOk.Enabled = true;
-        }
-
-        private void txtMail_Validated(object sender, EventArgs e)
-        {
-            //btnOk.Enabled = true;
-        }
-
-        private void txtboxFname_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtboxFname_Validating(object sender, CancelEventArgs e)
-        {
-
-        }
-
-
     }
 }
